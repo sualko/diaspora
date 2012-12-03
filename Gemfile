@@ -30,9 +30,14 @@ gem 'remotipart', '1.0.2'
 gem 'omniauth', '1.1.1'
 gem 'omniauth-facebook', '1.4.1'
 gem 'omniauth-tumblr', '1.1'
+<<<<<<< HEAD
 gem 'omniauth-twitter', '0.0.14'
 
 gem 'twitter', '4.4.0'
+=======
+gem 'omniauth-twitter', '0.0.13'
+
+gem 'twitter', '4.2.0'
 
 # mail
 
