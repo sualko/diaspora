@@ -5,13 +5,16 @@ end
 
 source 'http://rubygems.org'
 
-gem 'rails', '3.2.8'
+gem 'rails', '3.2.9'
 
 gem 'foreman', '0.60.2'
 
 gem 'unicorn', '4.4.0', :require => false
 
 gem 'rails_autolink', '1.0.9'
+
+# configuration
+gem 'configurate', '0.0.1'
 
 # cross-origin resource sharing
 
@@ -30,11 +33,6 @@ gem 'remotipart', '1.0.2'
 gem 'omniauth', '1.1.1'
 gem 'omniauth-facebook', '1.4.1'
 gem 'omniauth-tumblr', '1.1'
-<<<<<<< HEAD
-gem 'omniauth-twitter', '0.0.14'
-
-gem 'twitter', '4.4.0'
-=======
 gem 'omniauth-twitter', '0.0.13'
 
 gem 'twitter', '4.2.0'
@@ -176,5 +174,4 @@ end
 group :development do
   gem 'capistrano', '2.12.0', :require => false
   gem 'capistrano_colors', '0.5.5', :require => false
-  gem 'capistrano-ext', '1.2.1', :require => false
 end
