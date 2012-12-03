@@ -17,7 +17,7 @@ defaults: &defaults
   ## However changing http to https is okay and has no consquences.
   ## If you do change it you have to start over as it's hardcoded into
   ## the database.
-  pod_url: "http://diaspora.uni-konstanz.de:3000/"
+  pod_url: "https://diaspora.uni-konstanz.de"
 
   ## Setting the bundle of certificate authorities (CA) certificates.
   ## This is operating system specific.
