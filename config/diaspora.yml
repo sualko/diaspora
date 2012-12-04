@@ -103,10 +103,10 @@ configuration: ## Section
   ## Settings affecting how ./script/server behaves.
   server: ## Section
     ## The port on which the appserver should listen
-    #port: 3000
+    port: 3000
     
     ## The environment in which the server should be started by default.
-    #rails_environment: 'production'
+    rails_environment: 'production'
     
     ## The database type the server should use by default.
     ## Valid choices are 'mysql' and 'postgres'
@@ -114,10 +114,10 @@ configuration: ## Section
       
     ## Embed a resque worker inside the unicorn process, useful for
     ## minimal Heroku setups
-    #embed_resque_worker: true
+    embed_resque_worker: true
     
     ## Number of resque workers to start
-    #resque_workers: 1
+    resque_workers: 1
   
   ## Settings probably affecting the privacy of your users 
   privacy: ## Section
@@ -168,7 +168,7 @@ configuration: ## Section
       
       ## Set this to true if you want users to invite as many
       ## people as they want.
-      #open: true
+      open: false
       
       ## The default amount of invitiations an invite link has.
       ## Every user has such a link. Only counts if open is false.
