@@ -106,7 +106,7 @@ configuration: ## Section
     port: 3000
     
     ## The environment in which the server should be started by default.
-    rails_environment: 'production'
+    #rails_environment: 'production'
     
     ## The database type the server should use by default.
     ## Valid choices are 'mysql' and 'postgres'
@@ -114,7 +114,7 @@ configuration: ## Section
       
     ## Embed a resque worker inside the unicorn process, useful for
     ## minimal Heroku setups
-    embed_resque_worker: true
+    #embed_resque_worker: true
     
     ## Number of resque workers to start
     resque_workers: 1
