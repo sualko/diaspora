@@ -21,31 +21,28 @@ authorizations: &AUTHORIZATIONS
 ## Enviornments
 
 development:
-  host: krtek.metameute.de
-  port: 389
-  attribute: cn
-  base: ou=People,dc=asta,dc=uni-luebeck,dc=de
-  #admin_user: cn=pw_reset,dc=asta,dc=uni-luebeck,dc=de
-  #admin_password:
-  ssl: false
-  <<: *AUTHORIZATIONS
-
-test:
-  host: localhost
+  host: LDAPSERVER
   port: 3389
   attribute: cn
-  base: ou=people,dc=test,dc=com
-  admin_user: cn=admin,dc=test,dc=com
-  admin_password: admin_password
-  ssl: false
+  base: ou=people,o=ORGA,c=COUNTRY
+  bind_dn: cn=user,ou=people,o=ORGA,c=COUNTRY
+  ssl: start_tls
+  # <<: *AUTHORIZATIONS
+
+test:
+  host: LDAPSERVER
+  port: 3389
+  attribute: cn
+  base: ou=people,o=ORGA,c=COUNTRY
+  bind_dn: cn=user,ou=people,o=ORGA,c=COUNTRY
+  ssl: start_tls
   # <<: *AUTHORIZATIONS
 
 production:
-  host: krtek.metameute.de
-  port: 389
+  host: LDAPSERVER
+  port: 3389
   attribute: cn
-  base: ou=People,dc=asta,dc=uni-luebeck,dc=de
-  #admin_user: cn=pw_reset,dc=asta,dc=uni-luebeck,dc=de
-  #admin_password:
-  ssl: false
-  <<: *AUTHORIZATIONS
+  base: ou=people,o=ORGA,c=COUNTRY
+  bind_dn: cn=user,ou=people,o=ORGA,c=COUNTRY
+  ssl: start_tls
+  # <<: *AUTHORIZATIONS
