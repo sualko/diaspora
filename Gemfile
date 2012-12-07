@@ -27,7 +27,7 @@ gem 'rack-protection', '1.2'
 # authentication
 
 gem 'devise'
-gem "devise_ldap_authenticatable", :git => "git://github.com/cschiewek/devise_ldap_authenticatable.git"
+gem "devise_ldap_authenticatable"
 
 gem 'net-ldap'
 
