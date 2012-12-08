@@ -513,11 +513,11 @@ class User < ActiveRecord::Base
   private
 
   def get_ldap_popid
-    return ldap_get_param(self.username, "uid")
+    return ldap_get_param(self.username, "uid", self.password)
   end
 
   def get_ldap_email
-    return ldap_get_param(self.username, "mail")
+    return ldap_get_param(self.username, "mail", self.password)
   end
   
   def clearable_fields
