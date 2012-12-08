@@ -501,7 +501,7 @@ class User < ActiveRecord::Base
     Rails.logger.info { ["Setting up a new user with popid", get_ldap_popid, "for user", username].join(" ") }
     setup :username => username, :email => get_ldap_email, :popid => get_ldap_popid
     
-    Rails.logger.info{["owner", self.person].join("=")}
+    Rails.logger.info{["owner", self.person.owner].join("=")}
     
   end
 
