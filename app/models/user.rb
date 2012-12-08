@@ -392,7 +392,9 @@ class User < ActiveRecord::Base
     Rails.logger.error(["There are ", self.errors.size, " errors"].join(""))
     
     self.errors.each do |name|
-      Rails.logger.error(["Error: ", name].join(" "))
+      name.each do |val|
+        Rails.logger.error(["Error: ", name, " => ", val].join(" "))
+      end
     end
       
     errors = self.errors
