@@ -496,6 +496,7 @@ class User < ActiveRecord::Base
   # LDAP User-creation does not know anythin about diaspora internals, so we
   # need to call setup manually with username and email.
   def ldap_before_save
+    Rails.logger.info { ["Setting up a new user with email", get_ldap_email, "for user", username].join(" ") }
     setup :username => username, :email => get_ldap_email
   end
 
