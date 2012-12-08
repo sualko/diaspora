@@ -503,7 +503,7 @@ class User < ActiveRecord::Base
   private
 
   def get_ldap_email
-    Devise::LdapAdapter.get_ldap_param(username, "mail")
+    Devise::LdapAdapter.get_ldap_param(username, "email")
   end
   
   def clearable_fields
