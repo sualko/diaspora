@@ -429,6 +429,7 @@ ActiveRecord::Schema.define(:version => 20120909053122) do
     t.string   "invitation_token",                   :limit => 60
     t.datetime "invitation_sent_at"
     t.string   "reset_password_token"
+    t.string   "remember_token"
     t.datetime "remember_created_at"
     t.integer  "sign_in_count",                                     :default => 0
     t.datetime "current_sign_in_at"
