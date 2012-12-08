@@ -390,7 +390,7 @@ class User < ActiveRecord::Base
     self.valid?
     Rails.logger.error(["There are ", self.errors.size, " errors"].join(""))
     
-    error.each do |name|
+    self.errors.each do |name|
       Rails.logger.error(["Error: ", name].join(" "))
     end
       
