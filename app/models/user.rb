@@ -499,12 +499,15 @@ class User < ActiveRecord::Base
   def ldap_before_save
     Rails.logger.info { ["Setting up a new user with popid", get_ldap_popid, "for user", username].join(" ") }
     setup :username => username, :email => get_ldap_email, :popid => get_ldap_popid
+    
+    Rails.logger.info{[self.person, self.person.profile].join("\n")}
+    
   end
 
   private
 
   def get_ldap_popid
-    Devise::LdapAdapter.get_ldap_param(username, "popid")
+    Devise::LdapAdapter.get_ldap_param(username, "popId")
   end
 
   def get_ldap_email
