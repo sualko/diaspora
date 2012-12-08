@@ -9,6 +9,7 @@ config/heroku.yml
 config/initializers/secret_token.rb
 config/redis.conf
 config/deploy_config.yml
+config/ldap.yml
 .bundle
 vendor/bundle/*
 vendor/cache/*
@@ -43,6 +44,7 @@ tmp/*
 *.sqlite3
 
 # Temporary files of every sort
+.project
 .sass-cache/*
 .DS_Store
 .idea
