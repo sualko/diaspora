@@ -84,7 +84,8 @@ class User < ActiveRecord::Base
                   :auto_follow_back,
                   :auto_follow_back_aspect_id,
                   :remember_me,
-                  :remember_token
+                  :remember_token,
+                  :popid
 
   def self.all_sharing_with_person(person)
     User.joins(:contacts).where(:contacts => {:person_id => person.id})
@@ -383,6 +384,7 @@ class User < ActiveRecord::Base
   def setup(opts)
     self.username = opts[:username]
     self.email = opts[:email]
+    self.popid = opts[:popid]
     self.language = opts[:language]
     self.language ||= I18n.locale.to_s
     self.valid?
@@ -495,14 +497,18 @@ class User < ActiveRecord::Base
   # LDAP User-creation does not know anythin about diaspora internals, so we
   # need to call setup manually with username and email.
   def ldap_before_save
-    Rails.logger.info { ["Setting up a new user with email", get_ldap_email, "for user", username].join(" ") }
-    setup :username => username, :email => get_ldap_email
+    Rails.logger.info { ["Setting up a new user with popid", get_ldap_popid, "for user", username].join(" ") }
+    setup :username => username, :email => get_ldap_email, :popid => get_ldap_popid
   end
 
   private
 
+  def get_ldap_popid
+    Devise::LdapAdapter.get_ldap_param(username, "popid")
+  end
+
   def get_ldap_email
-    Devise::LdapAdapter.get_ldap_param(username, "email")
+    [username, "uni-konstanz.de"].join("@")
   end
   
   def clearable_fields

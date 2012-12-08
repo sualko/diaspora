@@ -420,6 +420,7 @@ ActiveRecord::Schema.define(:version => 20120909053122) do
 
   create_table "users", :force => true do |t|
     t.string   "username"
+    t.string   "popid"
     t.text     "serialized_private_key"
     t.boolean  "getting_started",                                   :default => true,  :null => false
     t.boolean  "disable_mail",                                      :default => false, :null => false
