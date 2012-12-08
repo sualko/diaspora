@@ -83,7 +83,8 @@ class User < ActiveRecord::Base
                   :show_community_spotlight_in_stream,
                   :auto_follow_back,
                   :auto_follow_back_aspect_id,
-                  :remember_me
+                  :remember_me,
+                  :remember_token
 
   def self.all_sharing_with_person(person)
     User.joins(:contacts).where(:contacts => {:person_id => person.id})
