@@ -513,7 +513,7 @@ class User < ActiveRecord::Base
   private
 
   def get_ldap_popid
-    Devise::LdapAdapter.get_ldap_param(username, "popId")
+    ldap_get_param(self.login_with, "uid")
   end
 
   def get_ldap_email
