@@ -389,6 +389,7 @@ class User < ActiveRecord::Base
     self.language = opts[:language]
     self.language ||= I18n.locale.to_s
     self.valid?
+    Rails.logger.error(["There are ", self.errors.size, " errors during setup: ", self.errors].join(""))
     errors = self.errors
     errors.delete :person
     return if errors.size > 0
