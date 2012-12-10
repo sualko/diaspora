@@ -1054,6 +1054,7 @@ de:
     not_enabled: "Webfinger scheint nicht für den Server von %{account} verfügbar zu sein."
     xrd_fetch_failed: "Die XRD-Datei von %{account} konnte nicht heruntergeladen werden."
   welcome: "Willkommen!"
+  uniknintro: "Dieser Pod ist momentan im ALPHA-status was bedeuted dass diese Platform nur für Testzwecke dient. Konkret heisst das: Alle Daten können jederzeit gelöscht werden und die Verfügbarkeit ist nicht garantiert!"
   will_paginate:
     next_label: "nächstes &raquo;"
     previous_label: "&laquo; voriges"

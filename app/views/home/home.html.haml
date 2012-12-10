@@ -1,0 +1,18 @@
+-#   Copyright (c) 2010-2011, University of Konstanz  This file is
+-#   licensed under the Affero General Public License version 3 or later.  See
+-#   the COPYRIGHT file.
+
+
+- content_for :page_title do
+  = pod_name
+
+#section_header
+  %h2
+    = t('welcome')
+
+.container{:style => 'text-align:center;'}
+    %p
+      %b=t('uniknintro')
+    %br
+    %br
+      %a{:id='login-link', :href='login', :class='btn', :style='margin-right: 15px;'} Log In

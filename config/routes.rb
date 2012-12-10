@@ -216,5 +216,5 @@ Diaspora::Application.routes.draw do
   end
 
   # Startpage
-  root :to => 'home#show'
+  root :to => 'home#home'
 end

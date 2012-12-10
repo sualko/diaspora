@@ -44,6 +44,8 @@ en:
   no_results: "No Results Found"
   _contacts: "Contacts"
   welcome: "Welcome!"
+  uniknintro: "This Pod is currently ALPHA-status only which means that this platform is for testing only. More concise: Any data may be deleted at any time as well as the availability may not be guaranteed!"
+  
 
   #for reference translation, the real activerecord english transations are actually
   #in en-US, en-GB, and en-AU yml files
