@@ -14,6 +14,16 @@ class ActionController::Responder
 end
 
 Devise.setup do |config|
+  # ==> LDAP Configuration 
+  config.ldap_logger = true
+  config.ldap_create_user = true
+  config.ldap_update_password = false
+  # config.ldap_config = "#{Rails.root}/config/ldap.yml"
+  # config.ldap_check_group_membership = false
+  # config.ldap_check_attributes = false
+  # config.ldap_use_admin_to_bind = false
+  # config.ldap_ad_group_check = false
+  
   # Configure the e-mail address which will be shown in DeviseMailer.
   # ==> ORM configuration
   # Load and configure the ORM. Supports :active_record (default), :mongoid
@@ -160,4 +170,3 @@ Devise.setup do |config|
   #   manager.default_strategies(:scope => :user).unshift :twitter_oauth
   # end
 end
-
