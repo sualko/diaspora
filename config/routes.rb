@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 #   Copyright (c) 2010-2011, Diaspora Inc.  This file is
 #   licensed under the Affero General Public License version 3 or later.  See
 #   the COPYRIGHT file.
@@ -442,4 +441,3 @@ Diaspora::Application.routes.draw do
   # Startpage
   root :to => 'home#show'
 end
->>>>>>> 33b96b3c774f869fa9bbd5fe8a2aaeaa03eee8f8
