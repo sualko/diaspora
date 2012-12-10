@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 #   Copyright (c) 2010-2011, Diaspora Inc.  This file is
 #   licensed under the Affero General Public License version 3 or later.  See
 #   the COPYRIGHT file.
@@ -2108,4 +2107,3 @@ en:
     xrd_fetch_failed: "there was an error getting the xrd from account %{account}"
     not_enabled: "webfinger does not seem to be enabled for %{account}'s host"
     no_person_constructed: "No person could be constructed from this hcard."
->>>>>>> 33b96b3c774f869fa9bbd5fe8a2aaeaa03eee8f8
