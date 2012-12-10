@@ -59,10 +59,6 @@
     %body
   #page.container
     #content
-      .row
-        #header{:style => "left: 0; padding: 15px 0;"}
-          %a#login-link.btn{:href => "login", :style => "margin-right: 15px;"} Log In
-          <img src='assets/branding/logo_caps.png'/ style="margin-left: 15px;">
       #getting-started
         .row{:style => "text-align: center;"}
           #banner
@@ -70,9 +66,7 @@
             %br
             %br
               = t('uniknintro')
-        %br
-        %br
-          #steps.row
-            .span4
-              %h2
-                %a#login-link.btn{:href => "login"} Log In
+            %br
+            %br
+            %h2
+              %a#btn{:href => "login"} Log In
