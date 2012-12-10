@@ -106,6 +106,7 @@ gem 'typhoeus', '0.3.3'
 # views
 
 gem 'haml', '3.1.7'
+gem 'haml-rails'
 gem 'mobile-fu', '1.1.0'
 
 gem 'will_paginate', '3.0.3'

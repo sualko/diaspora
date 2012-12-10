@@ -3,6 +3,8 @@
 #   the COPYRIGHT file.
 
 Diaspora::Application.routes.draw do
+  get "scikon/scikon_profile"
+
   if Rails.env.production?
     mount RailsAdmin::Engine => '/admin_panel', :as => 'rails_admin'
   end
