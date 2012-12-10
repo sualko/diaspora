@@ -35,30 +35,6 @@
   %br
 
   %h3 
-    = t('.change_password')
-  = form_for 'user', :url => user_path, :html => { :method => :put } do |f|
-    = f.error_messages
-    %p
-      = f.label :current_password, t('.current_password')
-      = f.password_field :current_password, :placeholder => t('.current_password_expl')
-    %p
-      = f.label :password, t('.new_password')
-      = f.password_field :password, :placeholder => t('.character_minimum_expl')
-    %p
-      = f.label :password_confirmation, t('password_confirmation')
-      = f.password_field :password_confirmation, :placeholder => t('.character_minimum_expl')
-
-    .submit_block
-      = link_to t('cancel'), edit_user_path
-      = t('or')
-      = f.submit t('.change_password'), :class => "button"
-
-  %br
-  %br
-  %hr
-  %br
-
-  %h3 
     = t('.change_language')
   = form_for 'user', :url => user_path, :html => { :method => :put } do |f|
     = f.error_messages
