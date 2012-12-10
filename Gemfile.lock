@@ -1,6 +1,6 @@
 GIT
-  remote: git://github.com/cschiewek/devise_ldap_authenticatable.git
-  revision: 3888a862167764551589da1741331fcd31f8c47a
+  remote: git://github.com/disy/devise_ldap_authenticatable.git
+  revision: 12d4c5d19c623cc5aae38dbb6cdaa2996b4860e8
   specs:
     devise_ldap_authenticatable (0.7.0)
       devise (~> 2.0)
