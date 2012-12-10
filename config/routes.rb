@@ -205,7 +205,7 @@ Diaspora::Application.routes.draw do
   get 'community_spotlight' => "contacts#spotlight", :as => 'community_spotlight'
   # Mobile site
 
-  get 'mobile/toggle', :to => 'home#toggle_mobile', :as => 'toggle_mobile'
+  get 'mobile/toggle', :to => 'sessions#new_mobile', :as => 'new_mobile'
 
   #Protocol Url
   get 'protocol' => redirect("https://github.com/diaspora/diaspora/wiki/Diaspora%27s-federation-protocol")
@@ -216,5 +216,5 @@ Diaspora::Application.routes.draw do
   end
 
   # Startpage
-  root :to => 'home#show'
+  root :to => 'sessions#new'
 end
