@@ -3,16 +3,94 @@
 -#   the COPYRIGHT file.
 
 
-- content_for :page_title do
-  = pod_name
+%head
+  :css
+    body {
+        margin-top: 50px;
+        background-color: white;
+        background-image : none;
+    }
 
-#section_header
-  %h2
-    = t('welcome')
+    #header {
+        -webkit-box-shadow:none;
+        -moz-box-shadow:none;
+        box-shadow:none;
+        border:none;
+        background:none;
+    }
 
-.container{:style => 'text-align:center;'}
-  %p
-    %b=t('uniknintro')
-  %br
-  %br
-  %a#login-link.btn{:href => "login", :style => "margin-right: 15px;"} Log In 
+    #steps {
+        text-align: center;
+    }
+
+    hr {
+        border: none;
+        border-bottom: 1px solid #ccc;
+    }
+
+    #banner {
+        border-bottom : 1px solid #ccc;
+        border-top : 1px solid #eee;
+        padding : 30px;
+        margin : 20px 0;
+
+        -webkit-box-shadow : 0 9px 15px -10px rgba(0,0,0,0.7);
+    }
+
+    #links {
+        margin: 0;
+        padding: 0;
+        text-align: center;
+    }
+
+    #links .section {
+        margin: 0;
+        padding: 0;
+        display: inline-block;
+        vertical-align: top;
+        width: 24%;
+        max-width: 24%;
+    }
+
+    #login-link {
+        float: right;
+    }
+
+    #change-page {
+        color: #999;
+        text-align: center;
+        font-style: italic;
+    }
+
+    footer .container {
+        margin-top: 15px;
+    }
+
+    .helpful {
+        cursor: help;
+    }
+
+    li {
+        list-style: none;
+    }
+
+    %body
+  #page.container
+    #content
+      .row
+        #header{:style => "left: 0; padding: 15px 0;"}
+          %a#login-link.btn{:href => "login", :style => "margin-right: 15px;"} Log In
+          <img src='assets/branding/logo_caps.png'/ style="margin-left: 15px;">
+      #getting-started
+        .row{:style => "text-align: center;"}
+          #banner
+            %h1 Welcome, friend.
+            %h3 
+              = t('uniknintro')
+        %br
+          %br
+            #steps.row
+              .span4
+                %h2
+                  Login: 
+                  %a#login-link.btn{:href => "login", :style => "margin-right: 15px;"} Log In
