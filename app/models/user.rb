@@ -16,8 +16,7 @@ class User < ActiveRecord::Base
   scope :daily_actives, lambda { |time = Time.now| logged_in_since(time - 1.day) }
   scope :yearly_actives, lambda { |time = Time.now| logged_in_since(time - 1.year) }
 
-  devise :ldap_authenticatable, :registerable,
-         :recoverable, :rememberable, :trackable, :validatable,
+  devise :ldap_authenticatable, :registerable, :rememberable, :trackable, :validatable,
          :token_authenticatable, :lockable, :lock_strategy => :none,
          :unlock_strategy => :none
 
