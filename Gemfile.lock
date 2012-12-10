@@ -185,6 +185,11 @@ GEM
       spork (>= 0.8.4)
       sys-proctable
     haml (3.1.7)
+    haml-rails (0.3.5)
+      actionpack (>= 3.1, < 4.1)
+      activesupport (>= 3.1, < 4.1)
+      haml (~> 3.1)
+      railties (>= 3.1, < 4.1)
     handlebars_assets (0.6.6)
       execjs (>= 1.2.9)
       sprockets (>= 2.0.3)
@@ -460,6 +465,7 @@ DEPENDENCIES
   guard-rspec (= 2.1.1)
   guard-spork (= 1.2.3)
   haml (= 3.1.7)
+  haml-rails
   handlebars_assets (= 0.6.6)
   http_accept_language (= 1.0.2)
   i18n-inflector-rails (~> 1.0)
