@@ -15,9 +15,9 @@ require 'factory_girl_rails'
 require Rails.root.join('spec', 'helper_methods')
 include HelperMethods
 
-alice = FactoryGirl.create(:user_with_aspect, :username => "alice", :password => 'evankorth')
-bob   = FactoryGirl.create(:user_with_aspect, :username => "bob", :password => 'evankorth')
-eve   = FactoryGirl.create(:user_with_aspect, :username => "eve", :password => 'evankorth')
+alice = FactoryGirl.create(:user_with_aspect, :username => "alice", :password => 'evankorth', :popid => 'pop05270')
+bob   = FactoryGirl.create(:user_with_aspect, :username => "bob", :password => 'evankorth', :popid => 'pop05270')
+eve   = FactoryGirl.create(:user_with_aspect, :username => "eve", :password => 'evankorth', :popid => 'pop05270')
 
 def url_hash(name)
   image_url = "/assets/user/#{name}.jpg"

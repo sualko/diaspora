@@ -30,6 +30,10 @@ gem 'devise'
 gem "devise_ldap_authenticatable", :git => "git://github.com/disy/devise_ldap_authenticatable.git"
 gem 'net-ldap'
 
+# web service
+
+gem 'savon'
+
 gem 'remotipart', '1.0.2'
 
 gem 'omniauth', '1.1.1'

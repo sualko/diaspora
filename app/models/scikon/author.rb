@@ -11,34 +11,31 @@ require 'active_model'
 class Author
   include ActiveModel::Validations
   
-  attr_accessor   :fn,
-                  :sn,
-                  :uid,
-                  :mail
+  attr_accessor   :name,
+                  :uid
   
   def initialize(params = {})
-    self.fn = params[:fn]
-    self.sn = params[:sn]
+    self.name = params[:name]
     self.uid = params[:uid]
-    self.mail = params[:mail]
   end
   
   # This methods provide information whether or not the
-  # user exists in the pod (by uid)
+  # user exists in the pod (by uid) and returns the user if so
   def is_in_pod?
     false if !has_extern_id?
+    User.find_by_popid(self.uid).nil?
   end
   
   # If the author exists in the pod (identified by uid)
   # the user object representation of him is being returned
   def get_pod_user
-    nil if !is_in_pod?
+    User.find_by_popid(self.uid)
   end
   
   # If the author doesn't have a popid, this means he's
   # not part of uni konstanz and can't be in this pod.
   def has_extern_id?
-    return false
+    !self.uid.nil?
   end
   
 end

@@ -1,2 +1,36 @@
-%h1 Scikon#scikon_profile
-%p Find me in app/views/scikon/scikon_profile.html.haml
+-#   Copyright (c) 2010-2011, Diaspora Inc.  This file is
+-#   licensed under the Affero General Public License version 3 or later.  See
+-#   the COPYRIGHT file.
+
+
+- content_for :head do
+  = javascript_include_tag :people
+  :javascript
+    Mentions.options.prefillMention = Mentions._contactToMention(#{@person.to_json});
+
+- content_for :page_title do
+  = @person.name
+
+.span-6
+  = render :partial => 'people/profile_sidebar', :locals => {:person => @person, :contact => @contact }
+
+  - if user_signed_in? && @contact.persisted? && @contacts_of_contact.count > 0
+    .span-5.last#contacts_of_contact
+      .section.contact_pictures
+        %h4
+          = t('contacts', :count => @contacts_of_contact_count)
+        - for person in @contacts_of_contact
+          = person_image_link person
+      - if @contacts_of_contact.count > 8
+        %p.see_all= link_to t('.see_all'), person_contacts_path(@person)
+
+.span-18.last
+  .stream_container
+    = render 'people/sub_header', :person => @person, :contact => @contact
+
+    #scikon_profile.stream
+      - for publication in @scikon_profile.publications
+        = render :partial => 'scikon/publication', :locals => publication
+          
+    #paginate
+      %span.loader.hidden

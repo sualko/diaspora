@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120909053122) do
+ActiveRecord::Schema.define(:version => 20121211161953) do
 
   create_table "account_deletions", :force => true do |t|
     t.string  "diaspora_handle"
@@ -420,7 +420,6 @@ ActiveRecord::Schema.define(:version => 20120909053122) do
 
   create_table "users", :force => true do |t|
     t.string   "username"
-    t.string   "popid"
     t.text     "serialized_private_key"
     t.boolean  "getting_started",                                   :default => true,  :null => false
     t.boolean  "disable_mail",                                      :default => false, :null => false
@@ -430,7 +429,6 @@ ActiveRecord::Schema.define(:version => 20120909053122) do
     t.string   "invitation_token",                   :limit => 60
     t.datetime "invitation_sent_at"
     t.string   "reset_password_token"
-    t.string   "remember_token"
     t.datetime "remember_created_at"
     t.integer  "sign_in_count",                                     :default => 0
     t.datetime "current_sign_in_at"
@@ -453,6 +451,7 @@ ActiveRecord::Schema.define(:version => 20120909053122) do
     t.integer  "auto_follow_back_aspect_id"
     t.text     "hidden_shareables"
     t.datetime "reset_password_sent_at"
+    t.string   "popid"
   end
 
   add_index "users", ["authentication_token"], :name => "index_users_on_authentication_token", :unique => true

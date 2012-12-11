@@ -24,7 +24,7 @@ class User < ActiveRecord::Base
   before_validation :set_current_language, :on => :create
 
   validates :username, :presence => true, :uniqueness => true
-  validates_format_of :username, :with => /[A-Za-z]+[.]{1}[A-Za-z]+/
+  validates_format_of :username, :with => /[A-Za-z]+([.]{1}[A-Za-z]+)?/
   validates_length_of :username, :maximum => 32
   validates_exclusion_of :username, :in => USERNAME_BLACKLIST
   validates_inclusion_of :language, :in => AVAILABLE_LANGUAGE_CODES

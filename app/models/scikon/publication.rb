@@ -21,9 +21,8 @@ class Publication
                   :original_link,
                   :projects,
                   :published_date,
-                  :summary,
-                  :up_to_date,
-                  :updated_date
+                  :updated_date,
+                  :files
                   
   def initialize (params = {})
     self.urn = params[:urn]
@@ -37,8 +36,6 @@ class Publication
     self.original_link = params[:original_link]
     self.projects = params[:projects]
     self.published_date = params[:published_date]
-    self.summary = params[:summary]
-    self.up_to_date = params[:up_to_date]
     self.updated_date = params[:updated_date]
   end
                   

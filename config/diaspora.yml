@@ -264,6 +264,13 @@ configuration: ## Section
       #enable: true
       #key: 'abcdef'
       #secret: 'changeme'
+    
+    ## Scikon web service endpoint
+    scikon: ## Section
+      wsdl: 'http://arkham.kim.uni-konstanz.de:8080/fpkn/services/FpknQueryService?wsdl'
+      ns_ax25: 'http://to.service.fpkn.unikn.de/xsd'
+      #key: 'abcdef'
+      #secret: 'changeme'
   
   ## Settings relevant to administrators
   admins: ## Section
