@@ -8,9 +8,9 @@ class ScikonController < ApplicationController
   before_filter :authenticate_user!
 
   def scikon_profile
-    if params[:username]
-        @user = User.find_by_username(params[:username])
-        @scikon_profile = get_sci_profile :username => params[:username]
+    if !params[:forename].nil?
+        @user = User.find_by_username([params[:forename], params[:lastname]].join("."))
+        @scikon_profile = get_sci_profile :username => @user.username
     else
         @user = current_user
         @scikon_profile = get_sci_profile :username => @user.username

@@ -61,7 +61,7 @@ Diaspora::Application.routes.draw do
   
   #SciKon
   get "/scikon/scikon_profile"           => 'scikon#scikon_profile', :as => 'scikon_profile'
-  get '/scikon/scikon_profile/:username' => 'scikon#scikon_profile'
+  get '/scikon/scikon_profile/:forename.:lastname' => 'scikon#scikon_profile'
 
   # ActivityStreams routes
   scope "/activity_streams", :module => "activity_streams", :as => "activity_streams" do
