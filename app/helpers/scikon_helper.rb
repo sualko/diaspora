@@ -6,7 +6,7 @@ require 'savon'
 require 'nokogiri'
 
 module ScikonHelper
-  def get_sci_profile(params)
+  def get_sci_profile(params = {})
     client = connect()
     
     #
