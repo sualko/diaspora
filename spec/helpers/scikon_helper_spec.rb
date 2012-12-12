@@ -1,16 +1,6 @@
-require 'spec_helper_minus_webmock'
+require 'spec_helper'
 require 'nokogiri'
 
-# Specs in this file have access to a helper object that includes
-# the ScikonHelper. For example:
-#
-# describe ScikonHelper do
-#   describe "string concat" do
-#     it "concats two strings with spaces" do
-#       helper.concat_strings("this","that").should == "this that"
-#     end
-#   end
-# end
 describe ScikonHelper do
   before do
     @user = alice

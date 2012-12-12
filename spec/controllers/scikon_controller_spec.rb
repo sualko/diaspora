@@ -1,10 +1,14 @@
-require 'spec_helper_minus_webmock'
+require 'spec_helper'
 
 describe ScikonController do
 
-  describe "GET 'scikon_profile'" do
+  describe "#scikon_profile" do
+    before do
+      sign_in alice
+    end
+    
     it "returns http success" do
-      get 'scikon_profile'
+      get 'scikon_profile' 
       response.should be_success
     end
   end

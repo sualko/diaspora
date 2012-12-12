@@ -3,6 +3,7 @@
 #   the COPYRIGHT file.
 
 class ScikonController < ApplicationController
+  include ScikonHelper
 
   before_filter :authenticate_user!
 

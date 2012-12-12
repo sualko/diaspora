@@ -3,8 +3,6 @@
 #   the COPYRIGHT file.
 
 Diaspora::Application.routes.draw do
-  get "scikon/scikon_profile"
-
   if Rails.env.production?
     mount RailsAdmin::Engine => '/admin_panel', :as => 'rails_admin'
   end
@@ -60,6 +58,10 @@ Diaspora::Application.routes.draw do
   resources :photos, :except => [:index] do
     put :make_profile_photo
   end
+  
+  #SciKon
+  get "/scikon/scikon_profile"           => 'scikon#scikon_profile', :as => 'scikon_profile'
+  get '/scikon/scikon_profile/:username' => 'scikon#scikon_profile'
 
   # ActivityStreams routes
   scope "/activity_streams", :module => "activity_streams", :as => "activity_streams" do
