@@ -18,7 +18,6 @@
     #scikon_profile.stream
       - @scikon_profile.publications each do |publication|
         = render :partial => 'scikon/publication', :locals => publication
-      - end
-          
+        
     #paginate
       %span.loader.hidden
