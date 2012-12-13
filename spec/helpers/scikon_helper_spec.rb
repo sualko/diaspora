@@ -16,10 +16,24 @@ As a result, a set of technical possibilities applied on fixed defined security 
 The presented combination of the technical and the legal perspective on secure cloud storage enables end-users as well as hosting institutions to store their data securely in the cloud in an accountable and transparent way.</ax25:summary>               <ax25:title>A legal and technical perspective on secure cloud storage</ax25:title>               <ax25:updatedDate>2012-08-14 09:02:07</ax25:updatedDate>               <ax25:urn>http://nbn-resolving.de/urn:nbn:de:bsz:352-192389</ax25:urn>            </ax25:publications>            <ax25:totalNumberOfResults>15</ax25:totalNumberOfResults>         </ns:return>      </ns:getPublicationsByAuthorResponse>   </soapenv:Body></soapenv:Envelope>")
       
       @publications = @xml.xpath("//ax25:publications", 'ax25' => AppConfig.services.scikon.ns_ax25)
+      
     end
     
     it 'it gives back the scikon profile' do
-      migrate_publications(@publications).nil?.should_not be_true
+      (@publications.size == 2).should be_true
+      
+      
+      sciprofile = migrate_publications :publications => @publications
+      sciprofile.nil?.should_not be_true
+      
+      sciprofile.publications.nil?.should_not be_true
+      
+      size_bool = sciprofile.publications.size == 2
+      size_bool.should be_true
+      
+      sciprofile.publications.each do |k, publication|
+        publication.publication_title.nil?.should_not be_true
+      end
     end
   end
   

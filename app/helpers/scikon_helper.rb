@@ -25,7 +25,7 @@ module ScikonHelper
       # Saving the publications temporarily and ignoring other data
       publications = xml.xpath("//ax25:publications", 'ax25' => AppConfig.services.scikon.ns_ax25)
       
-      return migrate_publications(publications)
+      return migrate_publications :publications => publications
       
     else
       Rails.logger.error("Could not get a successful response from the server")
@@ -46,32 +46,37 @@ module ScikonHelper
   
   # This method is used to migrate publication objects (and authors aswell)
   # out of the nokogiri xml structure
-  def migrate_publications(publications = {})
+  def migrate_publications(params = {})
     # Creating a new hash for the authors
     scikon_profile = ScikonProfile.new
     scikon_profile.authors = Hash.new
     scikon_profile.publications = Hash.new
     
-    extract_authors publications, scikon_profile.authors
+    extract_authors params[:publications], scikon_profile.authors
+    publications = params[:publications]
     
     publications.each do |publication|
+      urn = publication.xpath("ax25:urn", 'ax25' => AppConfig.services.scikon.ns_ax25).text
       
-      urn = publication.xpath("//ax25:urn", 'ax25' => AppConfig.services.scikon.ns_ax25).text
-      publication_title = publication.xpath("//ax25:title", 'ax25' => AppConfig.services.scikon.ns_ax25).text
-      publication_summary = publication.xpath("//ax25:summary", 'ax25' => AppConfig.services.scikon.ns_ax25).text
-      persistent_link = publication.xpath("//ax25:IRLink", 'ax25' => AppConfig.services.scikon.ns_ax25).text
-      cite_source = publication.xpath("//ax25:citeSource", 'ax25' => AppConfig.services.scikon.ns_ax25).text
-      document_type = publication.xpath("//ax25:documentType", 'ax25' => AppConfig.services.scikon.ns_ax25).text
-      original_link = publication.xpath("//ax25:originalLink", 'ax25' => AppConfig.services.scikon.ns_ax25).text
-      published_date = publication.xpath("//ax25:publishedDate", 'ax25' => AppConfig.services.scikon.ns_ax25).text
-      updated_date = publication.xpath("//ax25:updatedDate", 'ax25' => AppConfig.services.scikon.ns_ax25).text
-      files = publication.xpath("//ax25:files", 'ax25' => AppConfig.services.scikon.ns_ax25)
+      puts "\n\nURN:"
+      puts urn
+      puts "\n\n"
+      
+      publication_title = publication.xpath("ax25:title", 'ax25' => AppConfig.services.scikon.ns_ax25).text
+      publication_summary = publication.xpath("ax25:summary", 'ax25' => AppConfig.services.scikon.ns_ax25).text
+      persistent_link = publication.xpath("ax25:IRLink", 'ax25' => AppConfig.services.scikon.ns_ax25).text
+      cite_source = publication.xpath("ax25:citeSource", 'ax25' => AppConfig.services.scikon.ns_ax25).text
+      document_type = publication.xpath("ax25:documentType", 'ax25' => AppConfig.services.scikon.ns_ax25).text
+      original_link = publication.xpath("ax25:originalLink", 'ax25' => AppConfig.services.scikon.ns_ax25).text
+      published_date = publication.xpath("ax25:publishedDate", 'ax25' => AppConfig.services.scikon.ns_ax25).text
+      updated_date = publication.xpath("ax25:updatedDate", 'ax25' => AppConfig.services.scikon.ns_ax25).text
+      files = publication.xpath("ax25:files", 'ax25' => AppConfig.services.scikon.ns_ax25)
       
       filelinks = Hash.new
       
       files.each do |file|
-        filename = file.xpath("//ax25:displayFilename", 'ax25' => AppConfig.services.scikon.ns_ax25).text
-        filelinks[filename] = file.xpath("//ax25:link", 'ax25' => AppConfig.services.scikon.ns_ax25).text
+        filename = file.xpath("ax25:displayFilename", 'ax25' => AppConfig.services.scikon.ns_ax25).text
+        filelinks.merge!('#{filename}' => file.xpath("//ax25:link", 'ax25' => AppConfig.services.scikon.ns_ax25).text)
       end
       
       # TODO
@@ -97,26 +102,30 @@ module ScikonHelper
                           :projects => projects,
                           :published_date => published_date,
                           :updated_date => updated_date,
-                          :files => files,
+                          :files => filelinks,
                           :authors => authors
-      scikon_profile.publications[persistent_link] = p
+      
+      puts("Merging now!")
+      scikon_profile.publications.merge! urn => p
+      
+      puts(scikon_profile.publications.size)
     end
     
     scikon_profile
   end
   
   def extract_authors(publication, authors)
-    all_authors = publication.xpath("//ax25:authors", 'ax25' => AppConfig.services.scikon.ns_ax25)
+    all_authors = publication.xpath("ax25:authors", 'ax25' => AppConfig.services.scikon.ns_ax25)
     
     if authors.nil?
       authors = Hash.new
     end
     
     all_authors.each do |author|
-      externId = author.xpath("//ax25:externId", 'ax25' => AppConfig.services.scikon.ns_ax25).text
-      name = author.xpath("//ax25:externId", 'ax25' => AppConfig.services.scikon.ns_ax25).text
+      externId = author.xpath("ax25:externId", 'ax25' => AppConfig.services.scikon.ns_ax25).text
+      name = author.xpath("ax25:externId", 'ax25' => AppConfig.services.scikon.ns_ax25).text
       
-      unless !authors[name].nil?
+      unless !authors['#{name}'].nil?
         a = Author.new :name => name
         
         if externId != ''
@@ -125,6 +134,8 @@ module ScikonHelper
           a.uid = externId
         end
       end
+      
+      authors.merge!('#{name}' => a)
     end
     
     all_authors

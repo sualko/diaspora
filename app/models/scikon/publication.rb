@@ -26,6 +26,8 @@ class Publication
                   
   def initialize (params = {})
     self.urn = params[:urn]
+    
+    puts params[:publication_title]
     self.publication_title = params[:publication_title]
     self.publication_summary = params[:publication_summary]
     self.authors = params[:authors]

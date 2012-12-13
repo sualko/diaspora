@@ -16,7 +16,7 @@
     = render 'people/sub_header', :person => @person, :contact => @contact
 
     #scikon_profile.stream
-      - @scikon_profile.publications.each do |publication|
+      - @scikon_profile.publications.each_value do |publication|
         = render :partial => 'scikon/publication', :locals => {:publication => publication}
         
     #paginate
