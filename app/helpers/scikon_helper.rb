@@ -130,7 +130,7 @@ module ScikonHelper
       externId = author.xpath("ax25:externId", 'ax25' => AppConfig.services.scikon.ns_ax25).text
       name = author.xpath("ax25:externId", 'ax25' => AppConfig.services.scikon.ns_ax25).text
       
-      unless !authors['#{name}'].nil?
+      unless !authors[name].nil?
         a = Author.new :name => name
         
         if externId != ''
@@ -140,7 +140,7 @@ module ScikonHelper
         end
       end
       
-      authors.merge!('#{name}' => a)
+      authors.merge!(name => a)
     end
     
     all_authors
