@@ -319,6 +319,8 @@ de:
       birthday_with_year: "%d. %B %Y"
       fullmonth_day: "%d. %B"
   delete: "Löschen"
+  document_type:
+    dissertation: "Dissertation"
   email: "E-Mail"
   error_messages:
     helper:

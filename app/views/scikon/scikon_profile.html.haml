@@ -30,8 +30,6 @@
 
 .span-18.last
   .stream_container
-    = render 'people/sub_header', :person => @person, :contact => @contact
-
     #scikon_profile.stream
       - @scikon_profile.publications.each_value do |publication|
         = render :partial => 'scikon/publication', :locals => {:publication => publication}
