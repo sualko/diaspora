@@ -18,8 +18,23 @@ class ScikonController < ApplicationController
     
     @person = @user.person
     
-    unless @person.nil?
-      @contact = current_user.contact_for(@person)
+    unless params[:format] == "json" # hovercard
+      if current_user
+        @block = current_user.blocks.where(:person_id => @person.id).first
+        @contact = current_user.contact_for(@person)
+        @aspects_with_person = []
+        if @contact && !params[:only_posts]
+          @aspects_with_person = @contact.aspects
+          @aspect_ids = @aspects_with_person.map(&:id)
+          @contacts_of_contact_count = @contact.contacts.count
+          @contacts_of_contact = @contact.contacts.limit(8)
+
+        else
+          @contact ||= Contact.new
+          @contacts_of_contact_count = 0
+          @contacts_of_contact = []
+        end
+      end
     end
   end
 end
