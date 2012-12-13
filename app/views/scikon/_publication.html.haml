@@ -7,5 +7,5 @@
     = publication_link publication
     
     .info
-      - publication.authors.each do |k, author|
-        author.name
+      - unless publication.authors.nil? do publication.authors.each do |author|
+         author.name
