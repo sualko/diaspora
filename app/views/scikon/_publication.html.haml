@@ -5,7 +5,3 @@
 .stream_element{:id => publication.urn}
   .bd
     = publication_link publication
-    
-    .info
-      - unless publication.authors.nil? do publication.authors.each do |author|
-        author.name
