@@ -767,6 +767,11 @@ de:
       reshared_via: "weitergesagt durch"
       show_original: "Original anzeigen"
   search: "Suche"
+  scikon:
+    publication:
+      simple_link: "%{publication}"
+    scikon_profile:
+      title: "Universitätsprofil von %{first_name} %{last_name}"
   services:
     create:
       already_authorized: "Ein anderer Nutzer mit der Diaspora ID %{diaspora_id} hat diesen %{service_name}-Account bereits autorisiert."

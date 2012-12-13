@@ -10,7 +10,10 @@
 
 - content_for :page_title do
   = @person.name
-
+  
+#section_header
+  %h2
+    = t('.title', :first_name => @person.first_name, :last_name => @person.last_name)
 
 .span-6
   = render :partial => 'people/profile_sidebar', :locals => {:person => @person, :contact => @contact }

@@ -31,6 +31,11 @@ module ScikonHelper
       Rails.logger.error("Could not get a successful response from the server")
     end
   end
+  
+  # Link_to methods...
+  def publication_link(publication)
+    link_to(t('scikon.publication.simple_link', :publication => publication.publication_title), publication.persistent_link)
+  end
 
   private
 
@@ -113,7 +118,7 @@ module ScikonHelper
     
     scikon_profile
   end
-  
+
   def extract_authors(publication, authors)
     all_authors = publication.xpath("ax25:authors", 'ax25' => AppConfig.services.scikon.ns_ax25)
     
