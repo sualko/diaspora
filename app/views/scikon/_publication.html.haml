@@ -3,5 +3,9 @@
 -#   the COPYRIGHT file.
 
 .stream_element{:id => publication.urn}
-  %p
-  = publication_link publication
+  .bd
+    = publication_link publication
+    
+    .info
+      - publication.authors.each do |k, author|
+        = author.name
