@@ -7,6 +7,6 @@
     = publication_link publication
   .info
     - publication.authors.each do |k, author|
-      = author.name + ";"
+      = [author.name, ";"].join['']
       
-  .right= t.('document_type.info') + t(['document_type.', publication.document_type]).join[""]
+  .right= [t.('document_type.info'), t(['document_type.', publication.document_type]).join[""]].join("")
