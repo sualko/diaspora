@@ -8,3 +8,7 @@
   .info
     - publication.authors.each do |k, author|
       = [author.name, ";"].join("")
+      
+  .right
+    = t('document_type.info')
+    = t(['document_type', publication.document_type].join("."))
