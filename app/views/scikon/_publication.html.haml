@@ -5,10 +5,11 @@
 .stream_element{:id => publication.urn}
   .bd
     = publication_link publication
-  .info
-    - publication.authors.each do |k, author|
-      = [author.name, ";"].join("")
+    .info
+      - publication.authors.each do |k, author|
+        = author.name
+        = "; "
       
-  .right
+  .bd
     = t('document_type.info')
     = t(['document_type', publication.document_type].join("."))
