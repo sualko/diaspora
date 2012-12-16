@@ -29,6 +29,9 @@
         %p.see_all= link_to t('.see_all'), person_contacts_path(@person)
 
 .span-18.last
+  %h2
+    = t('publications', :first_name => @person.first_name, :last_name => @person.last_name)
+  
   .stream_container
     #scikon_profile.stream
       - @scikon_profile.publications.each_value do |publication|

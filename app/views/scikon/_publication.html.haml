@@ -5,3 +5,6 @@
 .stream_element{:id => publication.urn}
   .bd
     = publication_link publication
+  .info
+    - publication.authors.each do |k, author|
+      = author.name

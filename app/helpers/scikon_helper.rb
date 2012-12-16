@@ -63,10 +63,6 @@ module ScikonHelper
     publications.each do |publication|
       urn = publication.xpath("ax25:urn", 'ax25' => AppConfig.services.scikon.ns_ax25).text
       
-      puts "\n\nURN:"
-      puts urn
-      puts "\n\n"
-      
       publication_title = publication.xpath("ax25:title", 'ax25' => AppConfig.services.scikon.ns_ax25).text
       publication_summary = publication.xpath("ax25:summary", 'ax25' => AppConfig.services.scikon.ns_ax25).text
       persistent_link = publication.xpath("ax25:IRLink", 'ax25' => AppConfig.services.scikon.ns_ax25).text
@@ -110,10 +106,7 @@ module ScikonHelper
                           :files => filelinks,
                           :authors => authors
       
-      puts("Merging now!")
       scikon_profile.publications.merge! urn => p
-      
-      puts(scikon_profile.publications.size)
     end
     
     scikon_profile
@@ -128,7 +121,12 @@ module ScikonHelper
     
     all_authors.each do |author|
       externId = author.xpath("ax25:externId", 'ax25' => AppConfig.services.scikon.ns_ax25).text
-      name = author.xpath("ax25:externId", 'ax25' => AppConfig.services.scikon.ns_ax25).text
+      name = author.xpath("ax25:lastname", 'ax25' => AppConfig.services.scikon.ns_ax25).text
+      
+      puts "ExternID: "
+      puts externId
+      puts "\nName: "
+      puts name
       
       unless !authors[name].nil?
         a = Author.new :name => name

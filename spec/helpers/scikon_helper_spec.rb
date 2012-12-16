@@ -22,7 +22,6 @@ The presented combination of the technical and the legal perspective on secure c
     it 'it gives back the scikon profile' do
       (@publications.size == 2).should be_true
       
-      
       sciprofile = migrate_publications :publications => @publications
       sciprofile.nil?.should_not be_true
       
@@ -34,6 +33,11 @@ The presented combination of the technical and the legal perspective on secure c
       sciprofile.publications.each do |k, publication|
         publication.publication_title.nil?.should_not be_true
       end
+      
+      # Checking author migrations now
+      
+      (sciprofile.authors.size > 0).should be_true
+      
     end
   end
   
