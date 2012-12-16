@@ -32,12 +32,17 @@ The presented combination of the technical and the legal perspective on secure c
       
       sciprofile.publications.each do |k, publication|
         publication.publication_title.nil?.should_not be_true
+        
+        (publication.authors.size > 0).should be_true
+        
+        publication.authors.each do |k, author|
+          author.name.nil?.should be_false
+        end
       end
       
       # Checking author migrations now
       
       (sciprofile.authors.size > 0).should be_true
-      
     end
   end
   

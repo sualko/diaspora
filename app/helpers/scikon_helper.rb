@@ -123,25 +123,20 @@ module ScikonHelper
       externId = author.xpath("ax25:externId", 'ax25' => AppConfig.services.scikon.ns_ax25).text
       name = author.xpath("ax25:lastname", 'ax25' => AppConfig.services.scikon.ns_ax25).text
       
-      puts "ExternID: "
-      puts externId
-      puts "\nName: "
-      puts name
-      
-      unless !authors[name].nil?
+      if authors[name].nil?
         a = Author.new :name => name
-        
+
         if externId != ''
           # TODO
           # Check if author profile is accessible via scikon and create a more detailed profile
           a.uid = externId
         end
-      end
       
-      authors.merge!(name => a)
+        authors.merge!(name => a)
+      end
     end
     
-    all_authors
+    authors
   end
   
 end
