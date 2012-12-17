@@ -333,7 +333,7 @@ de:
     preprint: "Preprint"
     report: "Bericht"
     review: "Rezension"
-    studyThesis: "Studienarbeit"
+    StudyThesis: "Studienarbeit"
     workingPaper: "Working Paper/ Technical Report"
   email: "E-Mail"
   error_messages:
@@ -787,6 +787,9 @@ de:
     publication:
       simple_link: "%{publication}"
     scikon_profile:
+      title: "Universitätsprofil von %{first_name} %{last_name}"
+      publications: "Publikationen von %{first_name} %{last_name}"
+    publication_list:
       title: "Universitätsprofil von %{first_name} %{last_name}"
       publications: "Publikationen von %{first_name} %{last_name}"
   services:
