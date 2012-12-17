@@ -46,4 +46,27 @@ The presented combination of the technical and the legal perspective on secure c
     end
   end
   
+  describe "#author_link" do
+    before do
+      @author1 = Author.new :name => "sebastian.graf", :email => "sebastian.graf@uni-konstanz.de", :uid => "pop34027"
+      @author2 = Author.new :name => "andreas.rain", :email => "andreas.rain@uni-konstanz.de", :uid => "pop321313"
+      @author3 = Author.new :name => "susi.susi", :email => "susi.susi@uni-konstanz.de"
+    end
+    
+    it 'it gives back an author link to a diaspora user' do
+      link = author_link @author1
+      (link == @author1.name).should be_false
+    end
+    
+    it 'it gives back a link to an external scikon profile' do
+      link = author_link @author2
+      (link == @author2.name).should be_false
+    end
+    
+    it 'it gives back the authors name' do
+      link = author_link @author3
+      (link == @author3.name).should be_true
+    end
+  end
+  
 end

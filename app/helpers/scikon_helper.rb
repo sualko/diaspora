@@ -34,7 +34,22 @@ module ScikonHelper
   
   # Link_to methods...
   def publication_link(publication)
-    link_to(t('scikon.publication.simple_link', :publication => publication.publication_title), publication.persistent_link)
+    link_to(t('scikon.publication.simple_link', :publication => publication.publication_title), publication.urn)
+  end
+  
+  def author_link(author)
+    if author.is_in_pod?
+      user = User.find_by_popid(author.uid)
+      scikon_dia_link = ["scikon/scikon_profile/", user.username].join("")
+      link = link_to(author.name, scikon_dia_link)
+    elsif  author.has_extern_id?
+      scikon_ext_link = ["https://scikon.uni-konstanz.de/personen/", author.qualified_email_prefix].join("")
+      link = link_to(author.name, scikon_ext_link)
+    else
+      link = author.name
+    end
+    
+    link
   end
 
   private

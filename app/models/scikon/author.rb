@@ -12,18 +12,22 @@ class Author
   include ActiveModel::Validations
   
   attr_accessor   :name,
+                  :email,
                   :uid
   
   def initialize(params = {})
     self.name = params[:name]
+    self.email = params[:email]
     self.uid = params[:uid]
   end
   
   # This methods provide information whether or not the
   # user exists in the pod (by uid) and returns the user if so
   def is_in_pod?
-    false if !has_extern_id?
-    User.find_by_popid(self.uid).nil?
+    if !has_extern_id?
+      return false
+    end
+    !User.find_by_popid(self.uid).nil?
   end
   
   # If the author exists in the pod (identified by uid)
@@ -36,6 +40,13 @@ class Author
   # not part of uni konstanz and can't be in this pod.
   def has_extern_id?
     !self.uid.nil?
+  end
+  
+  # Qualified email prefix
+  def qualified_email_prefix
+    unless email.nil?
+      self.email[/[A-Za-z]+([.]{1}[A-Za-z]+)?/]
+    end
   end
   
 end

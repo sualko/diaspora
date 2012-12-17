@@ -320,7 +320,7 @@ de:
       fullmonth_day: "%d. %B"
   delete: "Löschen"
   document_type:
-    info: "Art des Dokuments: "
+    info: ""
     article: "Artikel"
     bachelorThesis: "Bachelorarbeit"
     book: "Buch"

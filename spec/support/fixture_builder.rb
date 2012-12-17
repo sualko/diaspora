@@ -27,6 +27,9 @@ FixtureBuilder.configure do |fbuilder|
 
     local_leia = FactoryGirl.create(:user_with_aspect, :username => "leia")
     leias_aspect = local_leia.aspects.where(:name => "generic").first
+    
+    local_sebastian = FactoryGirl.create(:user_with_aspect, :username => "sebastian.graf", :popid => "pop34027", :email => "sebastian.graf@uni-konstanz.de")
+    leias_aspect = local_leia.aspects.where(:name => "generic").first
 
     remote_raphael = FactoryGirl.create(:person, :diaspora_handle => "raphael@remote.net")
 
