@@ -20,7 +20,6 @@ class User < ActiveRecord::Base
          :token_authenticatable, :lockable, :lock_strategy => :none,
          :unlock_strategy => :none
 
-  #before_validation :strip_and_downcase_username
   before_validation :set_current_language, :on => :create
   
   validates :username, :presence => true, :uniqueness => true

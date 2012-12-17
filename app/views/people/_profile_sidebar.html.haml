@@ -16,8 +16,8 @@
         %br
         %br
         %br
-    = link_to t('scikon.buttons.profile'), sciprofile_link(:username => @person.owner.username), :class => 'button'
-    = link_to t('scikon.buttons.publications'), sciprofile_publications_link(:person_id => @person.owner.username), :class => 'button'
+    = link_to t('scikon.buttons.profile'), sciprofile_link(@person.owner.username), :class => 'button'
+    = link_to t('scikon.buttons.publications'), sciprofile_publications_link(@person.owner.username), :class => 'button'
     
     %br
     -if contact.sharing? || person == current_user.person
