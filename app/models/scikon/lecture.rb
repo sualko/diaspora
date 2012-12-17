@@ -24,7 +24,7 @@ class Lecture
   end
   
   def link
-    link_to(self.title, ["https://lsf.uni-konstanz.de/qisserver/rds?state=verpublish&status=init&vmfile=no&moduleCall=webInfo&publishConfFile=webInfo&publishSubDir=veranstaltung&veranstaltung.veranstid=", self.id].join(""))
+    ["https://lsf.uni-konstanz.de/qisserver/rds?state=verpublish&status=init&vmfile=no&moduleCall=webInfo&publishConfFile=webInfo&publishSubDir=veranstaltung&veranstaltung.veranstid=", self.id].join("")
   end
   
 end

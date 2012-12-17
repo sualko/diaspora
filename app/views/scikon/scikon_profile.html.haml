@@ -63,7 +63,7 @@
           %td= t('.lectures.number')
         - @scikon_profile.lectures.each do |k, lecture|
           %tr
-            %td= lecture.link
+            %td= link_to(lecture.title, lecture.link)
             %td= lecture.type
             %td= lecture.number
             
