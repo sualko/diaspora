@@ -789,6 +789,14 @@ de:
     scikon_profile:
       title: "Universitätsprofil von %{first_name} %{last_name}"
       publications: "Publikationen von %{first_name} %{last_name}"
+      contact_data:
+        title: "Kontaktdaten"
+        name: "Name"
+        email: "Email-Adresse"
+        room: "Raumnummer"
+        phone: "Telefon"
+        fax: "Fax"
+        homepage: "Homepage"
     publication_list:
       title: "Universitätsprofil von %{first_name} %{last_name}"
       publications: "Publikationen von %{first_name} %{last_name}"

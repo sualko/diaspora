@@ -219,7 +219,7 @@ module ScikonHelper
           
           if a.fn == ''
             a.name = name
-            a.uid = ''
+            a.uid = nil
           end
         end
       

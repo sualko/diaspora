@@ -31,13 +31,28 @@
 .span-18.last
   .stream_container
     #scikon_profile
-      %p= @scikon_profile.name
-      %p= @scikon_profile.fn
-      %p= @scikon_profile.sn
-      %p= @scikon_profile.email
-      %p= @scikon_profile.room_number
-      %p= @scikon_profile.phone
-      %p= @scikon_profile.fax
-        
+      %h3
+        = t('.contact_data.title')
+      .scikon_contact_card
+        %table
+          %tr
+            %td= t('.contact_data.name')
+            %td= scikon_profile.name
+          %tr
+            %td= t('.contact_data.email')
+            %td= scikon_profile.email
+          %tr
+            %td= t('.contact_data.room')
+            %td= scikon_profile.room_number
+          %tr
+            %td= t('.contact_data.phone')
+            %td= scikon_profile.phone
+          %tr
+            %td= t('.contact_data.fax')
+            %td= scikon_profile.fax
+          %tr
+            %td= t('.contact_data.homepage')
+            %td= link_to(t('.contact_data.homepage'), scikon_profile.wobsite_url)
+            
     #paginate
       %span.loader.hidden
