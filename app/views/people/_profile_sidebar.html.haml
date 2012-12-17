@@ -13,9 +13,11 @@
         = link_to t('people.show.mention'), new_status_message_path(:person_id => @person.id), :class => 'button', :rel => 'facebox'
         - if @contact.mutual?
           = link_to t('people.show.message'), new_conversation_path(:contact_id => @contact.id, :name => @contact.person.name), :class => 'button', :rel => 'facebox'
-    %br
-    = link_to t('scikon.buttons.profile'), sciprofile_link(:username => @person.owner.username), :class => 'button', :rel => 'facebox'
-    = link_to t('scikon.buttons.publications'), sciprofile_publications_link(:person_id => @person.owner.username), :class => 'button', :rel => 'facebox'
+        %br
+        %br
+        %br
+    = link_to t('scikon.buttons.profile'), sciprofile_link(:username => @person.owner.username), :class => 'button'
+    = link_to t('scikon.buttons.publications'), sciprofile_publications_link(:person_id => @person.owner.username), :class => 'button'
     
     %br
     -if contact.sharing? || person == current_user.person

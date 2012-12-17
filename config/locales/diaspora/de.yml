@@ -784,6 +784,9 @@ de:
       show_original: "Original anzeigen"
   search: "Suche"
   scikon:
+    buttons:
+      profile: "Universitätsprofil"
+      publications: "Publikationsliste"
     publication:
       simple_link: "%{publication}"
     scikon_profile:
