@@ -799,6 +799,7 @@ de:
         homepage: "Homepage"
       lectures:
         title: "Veranstaltungen in diesem Semester"
+        previous_title: "Vergangene Veranstaltungen"
         lecture_link: "Link zu der Veranstaltung"
         type: "Typ"
         number: "Nummer"

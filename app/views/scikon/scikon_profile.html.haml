@@ -66,6 +66,19 @@
             %td= link_to(lecture.title, lecture.link)
             %td= lecture.type
             %td= lecture.number
+      %h3
+        = t('.lectures.previous_title')
+      
+      %table
+        %tr
+          %th= t('.lectures.lecture_link')
+          %th= t('.lectures.type')
+          %th= t('.lectures.number')
+        - @scikon_profile.previous_lectures.each do |k, lecture|
+          %tr
+            %td= link_to(lecture.title, lecture.link)
+            %td= lecture.type
+            %td= lecture.number
               
     #paginate
       %span.loader.hidden
