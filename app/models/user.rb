@@ -20,6 +20,7 @@ class User < ActiveRecord::Base
          :token_authenticatable, :lockable, :lock_strategy => :none,
          :unlock_strategy => :none
 
+  before_validation :strip_and_downcase_username
   before_validation :set_current_language, :on => :create
   
   validates :username, :presence => true, :uniqueness => true
@@ -200,7 +201,10 @@ class User < ActiveRecord::Base
   end
 
   def strip_and_downcase_username
-    
+    if username.present?
+      username.strip!
+      username.downcase!
+    end
   end
 
   def disable_getting_started
@@ -499,7 +503,8 @@ class User < ActiveRecord::Base
   # need to call setup manually with username and email.
   def ldap_before_save
     Rails.logger.info { ["Setting up a new user with popid", get_ldap_popid, "for user", username].join(" ") }
-    setup :username => username, :email => get_ldap_email, :popid => get_ldap_popid
+    #Please do not explode
+    setup :username => username, :email => get_ldap_email.first, :popid => get_ldap_popid
     
     Rails.logger.info{["owner", self.person.owner].join("=")}
     
