@@ -32,6 +32,30 @@ module ScikonHelper
     end
   end
   
+  def get_person_profile(popid)
+    client = connect()
+    
+    #
+    response = client.request :getPersonProfile do
+      soap.body = {
+        :personId => popid,
+        :lang => "de"
+      }
+    end
+    
+    if response.success?
+      xml = Nokogiri::XML(response.to_xml)
+      
+      # Saving the publications temporarily and ignoring other data
+      author_profile = xml.xpath("//ax25:return", 'ax25' => AppConfig.services.scikon.ns_ax25)
+      
+      return migrate_person_profile author_profile
+      
+    else
+      Rails.logger.error("Could not get a successful response from the server")
+    end
+  end
+  
   # Link_to methods...
   def publication_link(publication)
     link_to(t('scikon.publication.simple_link', :publication => publication.publication_title), publication.urn)
@@ -40,7 +64,7 @@ module ScikonHelper
   def author_link(author)
     if author.is_in_pod?
       user = User.find_by_popid(author.uid)
-      scikon_dia_link = ["scikon/scikon_profile/", user.username].join("")
+      scikon_dia_link = ["/scikon/scikon_profile/", user.username].join("")
       link = link_to(author.name, scikon_dia_link)
     elsif  author.has_extern_id?
       scikon_ext_link = ["https://scikon.uni-konstanz.de/personen/", author.qualified_email_prefix].join("")
@@ -51,8 +75,6 @@ module ScikonHelper
     
     link
   end
-
-  private
 
   # Builds up a connection to the scikon service
   def connect
@@ -126,6 +148,55 @@ module ScikonHelper
     
     scikon_profile
   end
+  
+  def migrate_person_profile(author_profile)
+    uid = author_profile.xpath("ax25:externId", 'ax25' => AppConfig.services.scikon.ns_ax25).text
+    email = author_profile.xpath("ax25:email", 'ax25' => AppConfig.services.scikon.ns_ax25).text
+    phone = author_profile.xpath("ax25:phone", 'ax25' => AppConfig.services.scikon.ns_ax25).text
+    fax = author_profile.xpath("ax25:fax", 'ax25' => AppConfig.services.scikon.ns_ax25).text
+    fn = author_profile.xpath("ax25:forename", 'ax25' => AppConfig.services.scikon.ns_ax25).text
+    sn = author_profile.xpath("ax25:lastname", 'ax25' => AppConfig.services.scikon.ns_ax25).text
+    name = [fn, sn].join(", ")
+    room_id = author_profile.xpath("ax25:roomId", 'ax25' => AppConfig.services.scikon.ns_ax25).text
+    room_number = author_profile.xpath("ax25:roomNumber", 'ax25' => AppConfig.services.scikon.ns_ax25).text
+    
+    # TODO Secretary check
+    secretary = nil
+    
+    sex = author_profile.xpath("ax25:sex", 'ax25' => AppConfig.services.scikon.ns_ax25).text
+    city = author_profile.xpath("ax25:city", 'ax25' => AppConfig.services.scikon.ns_ax25).text
+    street = author_profile.xpath("ax25:street", 'ax25' => AppConfig.services.scikon.ns_ax25).text
+    zip = author_profile.xpath("ax25:zip", 'ax25' => AppConfig.services.scikon.ns_ax25).text
+    wobsite_url = author_profile.xpath("ax25:wobsiteURL", 'ax25' => AppConfig.services.scikon.ns_ax25).text
+    picture = author_profile.xpath("ax25:picture/ax25:url", 'ax25' => AppConfig.services.scikon.ns_ax25).text
+    
+    # TODO define objects and migrate them using the service!
+    lectures = nil
+    previous_lectures = nil
+    projects = nil
+    
+    a = Author.new  :uid => uid,
+                    :name => name,
+                    :email => email,
+                    :phone => phone,
+                    :fax => fax,
+                    :fn => fn,
+                    :sn => sn,
+                    :room_id => room_id,
+                    :room_number => room_number,
+                    :secretary => secretary,
+                    :sex => sex,
+                    :city => city,
+                    :street => street,
+                    :zip => zip,
+                    :wobsite_url => wobsite_url,
+                    :picture => picture,
+                    :lectures => lectures,
+                    :previous_lectures => previous_lectures,
+                    :projects => projects
+                    
+    return a
+  end
 
   def extract_authors(publication, authors)
     all_authors = publication.xpath("ax25:authors", 'ax25' => AppConfig.services.scikon.ns_ax25)
@@ -139,12 +210,10 @@ module ScikonHelper
       name = author.xpath("ax25:lastname", 'ax25' => AppConfig.services.scikon.ns_ax25).text
       
       if authors[name].nil?
-        a = Author.new :name => name
-
-        if externId != ''
-          # TODO
-          # Check if author profile is accessible via scikon and create a more detailed profile
-          a.uid = externId
+        if externId == ''
+          a = Author.new :name => name
+        else
+          a = get_person_profile externId
         end
       
         authors.merge!(name => a)

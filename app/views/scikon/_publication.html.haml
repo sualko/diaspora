@@ -12,5 +12,5 @@
       
   .bd
     = t('document_type.info')
-    - unless publication.document_type.nil?
+    - unless publication.document_type == ''
       = t(['document_type', publication.document_type].join("."))

@@ -11,14 +11,46 @@ require 'active_model'
 class Author
   include ActiveModel::Validations
   
-  attr_accessor   :name,
+  attr_accessor   :uid,
+                  :name,
                   :email,
-                  :uid
+                  :phone,
+                  :fax,
+                  :fn,
+                  :sn,
+                  :room_id,
+                  :room_number,
+                  :secretary,
+                  :sex,
+                  :city,
+                  :street,
+                  :zip,
+                  :wobsite_url,
+                  :picture,
+                  :lectures,
+                  :previous_lectures,
+                  :projects
   
   def initialize(params = {})
+    self.uid = params[:uid]
     self.name = params[:name]
     self.email = params[:email]
-    self.uid = params[:uid]
+    self.phone = params[:phone]
+    self.fax = params[:fax]
+    self.fn = params[:fn]
+    self.sn = params[:sn]
+    self.room_id = params[:room_id]
+    self.room_number = params[:room_number]
+    self.secretary = params[:secretary]
+    self.sex = params[:sex]
+    self.city = params[:city]
+    self.street = params[:street]
+    self.zip = params[:zip]
+    self.wobsite_url = params[:wobsite_url]
+    self.picture = params[:picture]
+    self.lectures = params[:lectures]
+    self.previous_lectures = params[:previous_lectures]
+    self.projects = params[:projects]
   end
   
   # This methods provide information whether or not the

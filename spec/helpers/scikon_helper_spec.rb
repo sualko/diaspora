@@ -17,12 +17,18 @@ The presented combination of the technical and the legal perspective on secure c
       
       @publications = @xml.xpath("//ax25:publications", 'ax25' => AppConfig.services.scikon.ns_ax25)
       
+      @a = Author.new :name => "nothing.hill", 
+                      :uid => "pop34027"
+                      
+      @helper = Object.new.extend ScikonHelper
     end
     
     it 'it gives back the scikon profile' do
+      @helper.stub(:get_person_profile).and_return(@a)
+      
       (@publications.size == 2).should be_true
       
-      sciprofile = migrate_publications :publications => @publications
+      sciprofile = @helper.migrate_publications :publications => @publications
       sciprofile.nil?.should_not be_true
       
       sciprofile.publications.nil?.should_not be_true
@@ -43,6 +49,188 @@ The presented combination of the technical and the legal perspective on secure c
       # Checking author migrations now
       
       (sciprofile.authors.size > 0).should be_true
+    end
+  end
+  
+  describe '#migrate_person_profile' do
+    before do
+      @xml = Nokogiri::XML('<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/">
+               <soapenv:Body>
+                  <ns:getPersonProfileResponse xmlns:ns="http://service.fpkn.unikn.de">
+                     <ns:return xsi:type="ax25:PersonTO" xmlns:ax25="http://to.service.fpkn.unikn.de/xsd" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+                        <ax25:activities xsi:nil="true"/>
+                        <ax25:additionalInfo xsi:nil="true"/>
+                        <ax25:assignments xsi:type="ax25:AssignmentTO">
+                           <ax25:description xsi:nil="true"/>
+                           <ax25:end xsi:nil="true"/>
+                           <ax25:id>104</ax25:id>
+                           <ax25:role>20</ax25:role>
+                           <ax25:start xsi:nil="true"/>
+                           <ax25:text>LS Verteilte Systeme</ax25:text>
+                        </ax25:assignments>
+                        <ax25:awards xsi:nil="true"/>
+                        <ax25:city>Konstanz</ax25:city>
+                        <ax25:cooperations xsi:nil="true"/>
+                        <ax25:cv xsi:nil="true"/>
+                        <ax25:degree xsi:nil="true"/>
+                        <ax25:doctoralDissertations xsi:type="ax25:DoctoralDissertationTO">
+                           <ax25:author xsi:nil="true"/>
+                           <ax25:id>999</ax25:id>
+                           <ax25:reviewers xsi:type="ax25:PersonTO">
+                              <ax25:activities xsi:nil="true"/>
+                              <ax25:additionalInfo xsi:nil="true"/>
+                              <ax25:assignments xsi:nil="true"/>
+                              <ax25:awards xsi:nil="true"/>
+                              <ax25:city xsi:nil="true"/>
+                              <ax25:cooperations xsi:nil="true"/>
+                              <ax25:cv xsi:nil="true"/>
+                              <ax25:degree>Prof. Dr.</ax25:degree>
+                              <ax25:doctoralDissertations xsi:nil="true"/>
+                              <ax25:email xsi:nil="true"/>
+                              <ax25:externId>pop91555</ax25:externId>
+                              <ax25:fax xsi:nil="true"/>
+                              <ax25:forename>Marcel</ax25:forename>
+                              <ax25:id>1017</ax25:id>
+                              <ax25:institutions xsi:nil="true"/>
+                              <ax25:interests xsi:nil="true"/>
+                              <ax25:lastname>Waldvogel</ax25:lastname>
+                              <ax25:lectures xsi:nil="true"/>
+                              <ax25:pageLayout xsi:nil="true"/>
+                              <ax25:phone xsi:nil="true"/>
+                              <ax25:picture xsi:nil="true"/>
+                              <ax25:previousLectures xsi:nil="true"/>
+                              <ax25:projects xsi:nil="true"/>
+                              <ax25:publicationGroups xsi:nil="true"/>
+                              <ax25:researchIntentions xsi:nil="true"/>
+                              <ax25:roomId xsi:nil="true"/>
+                              <ax25:roomNumber xsi:nil="true"/>
+                              <ax25:secretary xsi:nil="true"/>
+                              <ax25:sex>M</ax25:sex>
+                              <ax25:street xsi:nil="true"/>
+                              <ax25:supervisions xsi:nil="true"/>
+                              <ax25:systemStatus xsi:nil="true"/>
+                              <ax25:totalNumberOfPublications>0</ax25:totalNumberOfPublications>
+                              <ax25:wobsiteURL xsi:nil="true"/>
+                              <ax25:workshops xsi:nil="true"/>
+                              <ax25:zip xsi:nil="true"/>
+                           </ax25:reviewers>
+                           <ax25:title>Secure Storage in the Cloud</ax25:title>
+                        </ax25:doctoralDissertations>
+                        <ax25:email>Sebastian.Graf@uni-konstanz.de</ax25:email>
+                        <ax25:externId>pop34027</ax25:externId>
+                        <ax25:fax>(+49) 07531 88-3739</ax25:fax>
+                        <ax25:forename>Sebastian</ax25:forename>
+                        <ax25:id>2492</ax25:id>
+                        <ax25:institutions xsi:type="ax25:InstitutionTO">
+                           <ax25:id>9</ax25:id>
+                           <ax25:name>FB Informatik und Informationswissenschaft</ax25:name>
+                           <ax25:type>13</ax25:type>
+                        </ax25:institutions>
+                        <ax25:institutions xsi:type="ax25:InstitutionTO">
+                           <ax25:id>104</ax25:id>
+                           <ax25:name>LS Verteilte Systeme</ax25:name>
+                           <ax25:type>8</ax25:type>
+                        </ax25:institutions>
+                        <ax25:interests xsi:nil="true"/>
+                        <ax25:lastname>Graf</ax25:lastname>
+                        <ax25:lectures xsi:type="ax25:LectureTO">
+                           <ax25:hyperlink xsi:nil="true"/>
+                           <ax25:id>34104</ax25:id>
+                           <ax25:infoURL><![CDATA[https://lsf.uni-konstanz.de/qisserver/rds?state=verpublish&status=init&vmfile=no&moduleCall=webInfo&publishConfFile=webInfo&publishSubDir=veranstaltung&veranstaltung.veranstid=34104]]></ax25:infoURL>
+                           <ax25:number>INF-10215-20122</ax25:number>
+                           <ax25:title>Bachelor-Projekt Verteilte Systeme</ax25:title>
+                           <ax25:type>Projekt</ax25:type>
+                        </ax25:lectures>
+                        <ax25:lectures xsi:type="ax25:LectureTO">
+                           <ax25:hyperlink xsi:nil="true"/>
+                           <ax25:id>34105</ax25:id>
+                           <ax25:infoURL><![CDATA[https://lsf.uni-konstanz.de/qisserver/rds?state=verpublish&status=init&vmfile=no&moduleCall=webInfo&publishConfFile=webInfo&publishSubDir=veranstaltung&veranstaltung.veranstid=34105]]></ax25:infoURL>
+                           <ax25:number>INF-10275-20122</ax25:number>
+                           <ax25:title>Master Project Distributed Systems</ax25:title>
+                           <ax25:type>Projekt</ax25:type>
+                        </ax25:lectures>
+                        <ax25:pageLayout xsi:nil="true"/>
+                        <ax25:phone>(+49) 07531 88-4319</ax25:phone>
+                        <ax25:picture xsi:type="ax25:PictureTO">
+                           <ax25:altText>SebastianGraf</ax25:altText>
+                           <ax25:height>0</ax25:height>
+                           <ax25:text>SebastianGraf</ax25:text>
+                           <ax25:url>https://lsf.uni-konstanz.de:443/qisserver/rds?state=medialoader&amp;objectid=238&amp;application=lsf</ax25:url>
+                           <ax25:width>0</ax25:width>
+                        </ax25:picture>
+                        <ax25:previousLectures xsi:type="ax25:LectureTO">
+                           <ax25:hyperlink xsi:nil="true"/>
+                           <ax25:id>31700</ax25:id>
+                           <ax25:infoURL><![CDATA[https://lsf.uni-konstanz.de/qisserver/rds?state=verpublish&status=init&vmfile=no&moduleCall=webInfo&publishConfFile=webInfo&publishSubDir=veranstaltung&veranstaltung.veranstid=31700]]></ax25:infoURL>
+                           <ax25:number>INF-10215-20121</ax25:number>
+                           <ax25:title>Bachelor-Projekt Verteilte Systeme</ax25:title>
+                           <ax25:type>Projekt</ax25:type>
+                        </ax25:previousLectures>
+                        <ax25:previousLectures xsi:type="ax25:LectureTO">
+                           <ax25:hyperlink xsi:nil="true"/>
+                           <ax25:id>31703</ax25:id>
+                           <ax25:infoURL><![CDATA[https://lsf.uni-konstanz.de/qisserver/rds?state=verpublish&status=init&vmfile=no&moduleCall=webInfo&publishConfFile=webInfo&publishSubDir=veranstaltung&veranstaltung.veranstid=31703]]></ax25:infoURL>
+                           <ax25:number>INF-11530-20121</ax25:number>
+                           <ax25:title>Design Patterns and Concurrency</ax25:title>
+                           <ax25:type>Vorlesung/Uebung</ax25:type>
+                        </ax25:previousLectures>
+                        <ax25:previousLectures xsi:type="ax25:LectureTO">
+                           <ax25:hyperlink xsi:nil="true"/>
+                           <ax25:id>31640</ax25:id>
+                           <ax25:infoURL><![CDATA[https://lsf.uni-konstanz.de/qisserver/rds?state=verpublish&status=init&vmfile=no&moduleCall=webInfo&publishConfFile=webInfo&publishSubDir=veranstaltung&veranstaltung.veranstid=31640]]></ax25:infoURL>
+                           <ax25:number>INF-10275-20121</ax25:number>
+                           <ax25:title>Master-Projekt Verteilte Systeme</ax25:title>
+                           <ax25:type>Projekt</ax25:type>
+                        </ax25:previousLectures>
+                        <ax25:projects xsi:nil="true"/>
+                        <ax25:publicationGroups xsi:nil="true"/>
+                        <ax25:researchIntentions xsi:type="ax25:ResearchIntentionRefTO">
+                           <ax25:researchIntention xsi:type="ax25:ResearchIntentionTO">
+                              <ax25:awards xsi:nil="true"/>
+                              <ax25:description xsi:nil="true"/>
+                              <ax25:doctoralDissertations xsi:nil="true"/>
+                              <ax25:end xsi:nil="true"/>
+                              <ax25:externalParticipants xsi:nil="true"/>
+                              <ax25:id>2003</ax25:id>
+                              <ax25:institutions xsi:nil="true"/>
+                              <ax25:participants xsi:nil="true"/>
+                              <ax25:publications xsi:nil="true"/>
+                              <ax25:relatedProjects xsi:nil="true"/>
+                              <ax25:researchIntentions xsi:nil="true"/>
+                              <ax25:shortDescription xsi:nil="true"/>
+                              <ax25:sponsorings xsi:nil="true"/>
+                              <ax25:start xsi:nil="true"/>
+                              <ax25:title>Secure Networking and Storage</ax25:title>
+                              <ax25:titleEn xsi:nil="true"/>
+                              <ax25:wobsiteURL xsi:nil="true"/>
+                              <ax25:workshops xsi:nil="true"/>
+                           </ax25:researchIntention>
+                           <ax25:riRole>2</ax25:riRole>
+                        </ax25:researchIntentions>
+                        <ax25:roomId>971</ax25:roomId>
+                        <ax25:roomNumber>V 521</ax25:roomNumber>
+                        <ax25:secretary xsi:nil="true"/>
+                        <ax25:sex>M</ax25:sex>
+                        <ax25:street>230</ax25:street>
+                        <ax25:supervisions xsi:nil="true"/>
+                        <ax25:systemStatus>A</ax25:systemStatus>
+                        <ax25:totalNumberOfPublications>15</ax25:totalNumberOfPublications>
+                        <ax25:wobsiteURL>http://www.disy.uni-konstanz.de/en/members/sebastian-graf/</ax25:wobsiteURL>
+                        <ax25:workshops xsi:nil="true"/>
+                        <ax25:zip>78457</ax25:zip>
+                     </ns:return>
+                  </ns:getPersonProfileResponse>
+               </soapenv:Body>
+            </soapenv:Envelope>')
+    end
+    
+    it 'gives back a fully migrated author object' do
+      author_profile = @xml.xpath("//ns:return", 'ns' => "http://service.fpkn.unikn.de")
+      
+      a = migrate_person_profile author_profile
+      
+      (a.fn == 'Sebastian').should be_true
+      (a.sn == 'Graf').should be_true
     end
   end
   
