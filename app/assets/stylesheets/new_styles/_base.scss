@@ -38,10 +38,6 @@ a { color : $link-blue  }
   color: inherit;
 }
 
-.author_link a{
-  color: #880055;
-}
-
 #author-info {
   position : absolute;
   z-index : 300;
@@ -360,6 +356,13 @@ $bring-dark-accent-forward-color: #DDD;
 }
 
 /* Scikon defs */
+div.author_link{
+  display: inline-block;
+}
+
+div.author_link a{
+  color: #880055;
+}
 
 .scikon_contact_card{
   margin-left: 30px;
