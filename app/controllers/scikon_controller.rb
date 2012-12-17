@@ -10,10 +10,10 @@ class ScikonController < ApplicationController
   def scikon_profile
     if !params[:forename].nil?
         @user = User.find_by_username([params[:forename], params[:lastname]].join("."))
-        @scikon_profile = get_sci_profile :username => @user.username
+        @scikon_profile = get_person_profile @user.popid
     else
         @user = current_user
-        @scikon_profile = get_sci_profile :username => @user.username
+        @scikon_profile = get_person_profile @user.popid
     end
     
     @person = @user.person

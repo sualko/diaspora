@@ -216,6 +216,11 @@ module ScikonHelper
           a = Author.new :name => name
         else
           a = get_person_profile externId
+          
+          if a.fn == ''
+            a.name = name
+            a.uid = ''
+          end
         end
       
         authors.merge!(name => a)
