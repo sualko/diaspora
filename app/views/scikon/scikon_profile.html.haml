@@ -57,17 +57,15 @@
         = t('.lectures.title')
       
       %table
-        %thead
-          %th
-            %td= t('.lectures.lecture_link')
-            %td= t('.lectures.type')
-            %td= t('.lectures.number')
-        %tbody
-          - @scikon_profile.lectures.each do |k, lecture|
-            %tr
-              %td= link_to(lecture.title, lecture.link)
-              %td= lecture.type
-              %td= lecture.number
+        %tr
+          %th= t('.lectures.lecture_link')
+          %th= t('.lectures.type')
+          %th= t('.lectures.number')
+        - @scikon_profile.lectures.each do |k, lecture|
+          %tr
+            %td= link_to(lecture.title, lecture.link)
+            %td= lecture.type
+            %td= lecture.number
               
     #paginate
       %span.loader.hidden
