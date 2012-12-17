@@ -62,6 +62,14 @@ module ScikonHelper
     link_to(t('scikon.publication.simple_link', :publication => publication.publication_title), publication.urn)
   end
   
+  def sciprofile_link(username)
+    ["/scikon/scikon_profile/", username].join("")
+  end
+  
+  def sciprofile_publications_link(username)
+    ["/scikon/publication_list/", username].join("")
+  end
+  
   def author_link(author)
     if author.is_in_pod?
       user = User.find_by_popid(author.uid)
