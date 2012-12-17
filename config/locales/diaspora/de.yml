@@ -797,11 +797,11 @@ de:
         phone: "Telefon"
         fax: "Fax"
         homepage: "Homepage"
-    lectures:
-      title: "Veranstaltungen in diesem Semester"
-      lecture_link: "Link zu der Veranstaltung"
-      type: "Typ"
-      number: "Nummer"
+      lectures:
+        title: "Veranstaltungen in diesem Semester"
+        lecture_link: "Link zu der Veranstaltung"
+        type: "Typ"
+        number: "Nummer"
     publication_list:
       title: "Universitätsprofil von %{first_name} %{last_name}"
       publications: "Publikationen von %{first_name} %{last_name}"
