@@ -200,10 +200,7 @@ class User < ActiveRecord::Base
   end
 
   def strip_and_downcase_username
-    if username.present?
-      username.strip!
-      username.downcase!
-    end
+    
   end
 
   def disable_getting_started
