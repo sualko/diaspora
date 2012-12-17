@@ -26,9 +26,12 @@ class Author
                   :street,
                   :zip,
                   :wobsite_url,
+                  :cv,
+                  :interests,
                   :picture,
                   :lectures,
                   :previous_lectures,
+                  :assignments,
                   :projects
   
   def initialize(params = {})
@@ -47,9 +50,12 @@ class Author
     self.street = params[:street]
     self.zip = params[:zip]
     self.wobsite_url = params[:wobsite_url]
+    self.cv = params[:cv]
+    self.interests = params[:interests]
     self.picture = params[:picture]
     self.lectures = params[:lectures]
     self.previous_lectures = params[:previous_lectures]
+    self.assignments = params[:assignments]
     self.projects = params[:projects]
   end
   

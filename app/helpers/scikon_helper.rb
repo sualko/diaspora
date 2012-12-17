@@ -172,10 +172,38 @@ module ScikonHelper
     wobsite_url = author_profile.xpath("ax25:wobsiteURL", 'ax25' => AppConfig.services.scikon.ns_ax25).text
     picture = author_profile.xpath("ax25:picture/ax25:url", 'ax25' => AppConfig.services.scikon.ns_ax25).text
     
+    lectures_xp = author_profile.xpath("ax25:lectures", 'ax25' => AppConfig.services.scikon.ns_ax25)
+    
+    lectures = Hash.new
+    lectures_xp.each do |lecture_xp|
+      id = lecture_xp.xpath("ax25:id", 'ax25' => AppConfig.services.scikon.ns_ax25).text
+      title = lecture_xp.xpath("ax25:title", 'ax25' => AppConfig.services.scikon.ns_ax25).text
+      number = lecture_xp.xpath("ax25:number", 'ax25' => AppConfig.services.scikon.ns_ax25).text
+      type = lecture_xp.xpath("ax25:type", 'ax25' => AppConfig.services.scikon.ns_ax25).text
+      
+      l = Lecture.new :id => id, :title => title, :type => type, :number => number
+      
+      lectures.merge! id => l
+    end
+    
+    previous_lectures_xp = author_profile.xpath("ax25:previousLectures", 'ax25' => AppConfig.services.scikon.ns_ax25)
+    
+    previous_lectures = Hash.new
+    previous_lectures_xp.each do |previous_lecture_xp|
+      id = previous_lecture_xp.xpath("ax25:id", 'ax25' => AppConfig.services.scikon.ns_ax25).text
+      title = previous_lecture_xp.xpath("ax25:title", 'ax25' => AppConfig.services.scikon.ns_ax25).text
+      number = previous_lecture_xp.xpath("ax25:number", 'ax25' => AppConfig.services.scikon.ns_ax25).text
+      type = previous_lecture_xp.xpath("ax25:type", 'ax25' => AppConfig.services.scikon.ns_ax25).text
+      
+      l = Lecture.new :id => id, :title => title, :type => type, :number => number
+      
+      previous_lectures.merge! id => l
+    end
+    
     # TODO define objects and migrate them using the service!
-    lectures = nil
-    previous_lectures = nil
     projects = nil
+    
+    # TODO CV and Assignments and Interests
     
     a = Author.new  :uid => uid,
                     :name => name,

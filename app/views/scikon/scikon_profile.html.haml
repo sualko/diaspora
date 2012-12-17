@@ -53,6 +53,19 @@
           %tr
             %td= t('.contact_data.homepage')
             %td= link_to(t('.contact_data.homepage'), @scikon_profile.wobsite_url)
+      %h3
+        = t('.lectures.title')
+      
+      %table
+        %th
+          %td= t('.lectures.lecture_link')
+          %td= t('.lectures.type')
+          %td= t('.lectures.number')
+        - @scikon_profile.lectures.each do |k, lecture|
+          %tr
+            %td= lecture.link
+            %td= lecture.type
+            %td= lecture.number
             
     #paginate
       %span.loader.hidden
