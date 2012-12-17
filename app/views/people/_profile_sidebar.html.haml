@@ -16,9 +16,8 @@
     %br
     = link_to t('scikon.buttons.profile'), sciprofile_link(:username => @person.owner.username), :class => 'button', :rel => 'facebox'
     = link_to t('scikon.buttons.publications'), sciprofile_publications_link(:person_id => @person.owner.username), :class => 'button', :rel => 'facebox'
-        
-      %br
-      %br
+    
+    %br
     -if contact.sharing? || person == current_user.person
       %ul#profile_information
         - unless person.bio.blank?

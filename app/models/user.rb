@@ -20,9 +20,9 @@ class User < ActiveRecord::Base
          :token_authenticatable, :lockable, :lock_strategy => :none,
          :unlock_strategy => :none
 
-  before_validation :strip_and_downcase_username
+  #before_validation :strip_and_downcase_username
   before_validation :set_current_language, :on => :create
-
+  
   validates :username, :presence => true, :uniqueness => true
   validates_format_of :username, :with => /[A-Za-z]+([.]{1}[A-Za-z]+)?/
   validates_length_of :username, :maximum => 32
