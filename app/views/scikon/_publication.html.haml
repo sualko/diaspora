@@ -12,4 +12,4 @@
       
   .bd
     = t('document_type.info')
-    = unless publication.document_type.nil? t(['document_type', publication.document_type].join("."))
+    = unless publication.document_type.nil? do t(['document_type', publication.document_type].join("."))
