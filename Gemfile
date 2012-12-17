@@ -119,11 +119,6 @@ gem 'gon', '4.0.1'
 
 # assets
 
-# compile ONLY when something changes
-guard 'rails-assets', :run_on => :change do
-  watch(%r{^app/assets/.+$})
-end
-
 group :assets do
   gem 'bootstrap-sass', '2.1.1.0'
   gem 'sass-rails', '3.2.5'
