@@ -48,7 +48,6 @@ module ScikonHelper
       
       # Saving the publications temporarily and ignoring other data
       
-      Rails.logger.info("Getting author profile from fpkn")
       author_profile = xml.xpath("//ns:return", 'ns' => "http://service.fpkn.unikn.de")
       
       return migrate_person_profile author_profile
