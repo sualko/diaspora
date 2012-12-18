@@ -64,6 +64,8 @@
           = t('.interests.title')
         .interests
           = @scikon_profile.interests
+        %br
+        %br
         
       - if @scikon_profile.lectures.size > 0
         %h3
@@ -81,6 +83,8 @@
               %td= lecture.number
           - if @scikon_profile.lectures.size == 0
             = t('.lectures.no_lectures')
+        %br
+        %br
             
       - if @scikon_profile.previous_lectures.size > 0
         %h3
@@ -98,6 +102,8 @@
               %td= lecture.number
           - if @scikon_profile.previous_lectures.size == 0
             = t('.lectures.no_previous_lectures')
+        %br
+        %br
           
       - if @scikon_profile.projects.size > 0
         %h3
@@ -112,6 +118,8 @@
               %td= link_to(project.title, project.link)
               %td= t('.projects.roles.#{project.role}')
               %td= "#{project.start} - #{project.end}"
+        %br
+        %br
         
       - if @scikon_profile.research_intentions.size > 0
         %h3
@@ -126,12 +134,16 @@
               %td= link_to(research_intention.title, research_intention.link)
               %td= t('.research_intentions.roles.#{research_intention.role}')
               %td= "#{research_intention.start} - #{research_intention.end}"
+        %br
+        %br
             
       - if @scikon_profile.cv != ''
         %h3
           = t('.cv.title')
         .cv
           = @scikon_profile.cv
+        %br
+        %br
               
     #paginate
       %span.loader.hidden
