@@ -254,7 +254,7 @@ module ScikonHelper
         if externId == ''
           a = Author.new :name => name
         else
-          a = get_person_profile externId
+          a = get_person_profile :popid => externId, :client => params[:client]
           
           if a.fn == ''
             a.name = name
