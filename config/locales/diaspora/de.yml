@@ -806,6 +806,8 @@ de:
         lecture_link: "Link zu der Veranstaltung"
         type: "Typ"
         number: "Nummer"
+        no_lectures: "Derzeit werden keine Veranstaltungen von diesem Benutzer geführt."
+        no_previous_lectures: "Dieser Benutzer hat in der Vergangenheit keine Veranstaltungen geführt."
     publication_list:
       title: "Universitätsprofil von %{first_name} %{last_name}"
       publications: "Publikationen von %{first_name} %{last_name}"

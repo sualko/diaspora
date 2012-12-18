@@ -66,6 +66,8 @@
             %td= link_to(lecture.title, lecture.link)
             %td= lecture.type
             %td= lecture.number
+        - if @scikon_profile.lectures.size == 0
+          = t('.lectures.no_lectures')
       %h3
         = t('.lectures.previous_title')
       
@@ -79,6 +81,8 @@
             %td= link_to(lecture.title, lecture.link)
             %td= lecture.type
             %td= lecture.number
+        - if @scikon_profile.previous_lectures.size == 0
+          = t('.lectures.no_previous_lectures')
               
     #paginate
       %span.loader.hidden
