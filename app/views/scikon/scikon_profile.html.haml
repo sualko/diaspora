@@ -67,7 +67,7 @@
         %br
         %br
         
-      - if @scikon_profile.lectures.size > 1
+      - if @scikon_profile.lectures.keys.size > 0
         %h3
           = t('.lectures.title')
         
@@ -86,7 +86,7 @@
         %br
         %br
             
-      - if @scikon_profile.previous_lectures.size > 1
+      - if @scikon_profile.previous_lectures.keys.size > 0
         %h3
           = t('.lectures.previous_title')
         
@@ -105,7 +105,7 @@
         %br
         %br
           
-      - if @scikon_profile.projects.size > 1
+      - if @scikon_profile.projects.keys.size > 0
         %h3
           = t('.projects.title')
         %table
@@ -121,7 +121,7 @@
         %br
         %br
         
-      - if @scikon_profile.research_intentions.size > 0
+      - if @scikon_profile.research_intentions.keys.size > 0
         %h3
           = t('.research_intentions.title')
         %table
