@@ -504,10 +504,7 @@ class User < ActiveRecord::Base
   def ldap_before_save
     Rails.logger.info { ["Setting up a new user with popid", get_ldap_popid, "for user", username].join(" ") }
     #Please do not explode
-    setup :username => username, :email => get_ldap_email.first, :popid => get_ldap_popid
-    
-    Rails.logger.info{["owner", self.person.owner].join("=")}
-    
+    setup :username => username, :email => get_ldap_email, :popid => get_ldap_popid
   end
 
   private
@@ -517,7 +514,14 @@ class User < ActiveRecord::Base
   end
 
   def get_ldap_email
-    return ldap_get_param(self.username, "mail", self.password)
+    email = ldap_get_param(self.username, "mail", self.password)
+    
+    if email.first.nil?
+      return email
+    else
+      return email.first
+    end
+    
   end
   
   def clearable_fields
