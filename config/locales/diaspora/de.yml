@@ -787,26 +787,6 @@ de:
     buttons:
       profile: "Universitätsprofil"
       publications: "Publikationsliste"
-    cv:
-      title: "Wissenschaftlicher Werdegang"
-    interests:
-      title: "Interessen"
-    projects:
-      title: "Projekte"
-      project_link: "Projektlink"
-      role: "Rolle"
-      roles:
-        1: "Projektleiter"
-        2: "Projektmitarbeiter"
-      time: "Laufzeit"
-    research_intentions:
-      title: "Forschungsvorhaben"
-      project_link: "Link zum Forschungsvorhaben"
-      role: "Rolle"
-      roles:
-        1: "Projektleiter"
-        2: "Projektmitarbeiter"
-      time: "Laufzeit"
     publication:
       simple_link: "%{publication}"
     publication_list:
@@ -823,6 +803,10 @@ de:
         phone: "Telefon"
         fax: "Fax"
         homepage: "Homepage"
+      cv:
+        title: "Wissenschaftlicher Werdegang"
+      interests:
+        title: "Interessen"
       lectures:
         title: "Veranstaltungen in diesem Semester"
         previous_title: "Vergangene Veranstaltungen"
@@ -831,6 +815,22 @@ de:
         number: "Nummer"
         no_lectures: "Derzeit werden keine Veranstaltungen von diesem Benutzer geführt."
         no_previous_lectures: "Dieser Benutzer hat in der Vergangenheit keine Veranstaltungen geführt."
+      projects:
+        title: "Projekte"
+        project_link: "Projektlink"
+        role: "Rolle"
+        roles:
+          1: "Projektleiter"
+          2: "Projektmitarbeiter"
+        time: "Laufzeit"
+      research_intentions:
+        title: "Forschungsvorhaben"
+        project_link: "Link zum Forschungsvorhaben"
+        role: "Rolle"
+        roles:
+          1: "Projektleiter"
+          2: "Projektmitarbeiter"
+        time: "Laufzeit"
   services:
     create:
       already_authorized: "Ein anderer Nutzer mit der Diaspora ID %{diaspora_id} hat diesen %{service_name}-Account bereits autorisiert."
