@@ -35,91 +35,103 @@
         = t('.contact_data.title')
       .scikon_contact_card
         %table
-          %tr
-            %td= t('.contact_data.name')
-            %td= @scikon_profile.name
-          %tr
-            %td= t('.contact_data.email')
-            %td= @scikon_profile.email
-          %tr
-            %td= t('.contact_data.room')
-            %td= @scikon_profile.room_number
-          %tr
-            %td= t('.contact_data.phone')
-            %td= @scikon_profile.phone
-          %tr
-            %td= t('.contact_data.fax')
-            %td= @scikon_profile.fax
-          %tr
-            %td= t('.contact_data.homepage')
-            %td= link_to(t('.contact_data.homepage'), @scikon_profile.wobsite_url)
-            
-      %h3
-        = t('.interests.title')
-      .interests
-        = @scikon_profile.interests
+          - if @scikon_profile.name != ''
+            %tr
+              %td= t('.contact_data.name')
+              %td= @scikon_profile.name
+          - if @scikon_profile.email != ''
+            %tr
+              %td= t('.contact_data.email')
+              %td= @scikon_profile.email
+          - if @scikon_profile.room != ''
+            %tr
+              %td= t('.contact_data.room')
+              %td= @scikon_profile.room_number
+          - if @scikon_profile.phone != ''
+            %tr
+              %td= t('.contact_data.phone')
+              %td= @scikon_profile.phone
+          - if @scikon_profile.fax != ''
+            %tr
+              %td= t('.contact_data.fax')
+              %td= @scikon_profile.fax
+            %tr
+              %td= t('.contact_data.homepage')
+              %td= link_to(t('.contact_data.homepage'), @scikon_profile.wobsite_url)
+              
+      - if @scikon_profile.interests != ''
+        %h3
+          = t('.interests.title')
+        .interests
+          = @scikon_profile.interests
         
-      %h3
-        = t('.lectures.title')
-      
-      %table
-        %tr
-          %th= t('.lectures.lecture_link')
-          %th= t('.lectures.type')
-          %th= t('.lectures.number')
-        - @scikon_profile.lectures.each do |k, lecture|
+      - if @scikon_profile.lectures.size > 0
+        %h3
+          = t('.lectures.title')
+        
+        %table
           %tr
-            %td= link_to(lecture.title, lecture.link)
-            %td= lecture.type
-            %td= lecture.number
-        - if @scikon_profile.lectures.size == 0
-          = t('.lectures.no_lectures')
-      %h3
-        = t('.lectures.previous_title')
-      
-      %table
-        %tr
-          %th= t('.lectures.lecture_link')
-          %th= t('.lectures.type')
-          %th= t('.lectures.number')
-        - @scikon_profile.previous_lectures.each do |k, lecture|
+            %th= t('.lectures.lecture_link')
+            %th= t('.lectures.type')
+            %th= t('.lectures.number')
+          - @scikon_profile.lectures.each do |k, lecture|
+            %tr
+              %td= link_to(lecture.title, lecture.link)
+              %td= lecture.type
+              %td= lecture.number
+          - if @scikon_profile.lectures.size == 0
+            = t('.lectures.no_lectures')
+            
+      - if @scikon_profile.previous_lectures.size > 0
+        %h3
+          = t('.lectures.previous_title')
+        
+        %table
           %tr
-            %td= link_to(lecture.title, lecture.link)
-            %td= lecture.type
-            %td= lecture.number
-        - if @scikon_profile.previous_lectures.size == 0
-          = t('.lectures.no_previous_lectures')
+            %th= t('.lectures.lecture_link')
+            %th= t('.lectures.type')
+            %th= t('.lectures.number')
+          - @scikon_profile.previous_lectures.each do |k, lecture|
+            %tr
+              %td= link_to(lecture.title, lecture.link)
+              %td= lecture.type
+              %td= lecture.number
+          - if @scikon_profile.previous_lectures.size == 0
+            = t('.lectures.no_previous_lectures')
           
-      %h3
-        = t('.projects.title')
-      %table
-        %tr
-          %th= t('.projects.project_link')
-          %th= t('.projects.role')
-          %th= t('.projects.time')
-        - @scikon_profile.projects.each do |k, project|
+      - if @scikon_profile.projects.size > 0
+        %h3
+          = t('.projects.title')
+        %table
           %tr
-            %td= link_to(project.title, project.link)
-            %td= t('.projects.roles.#{project.role}')
-            %td= "#{project.start} - #{project.end}"
+            %th= t('.projects.project_link')
+            %th= t('.projects.role')
+            %th= t('.projects.time')
+          - @scikon_profile.projects.each do |k, project|
+            %tr
+              %td= link_to(project.title, project.link)
+              %td= t('.projects.roles.#{project.role}')
+              %td= "#{project.start} - #{project.end}"
         
-      %h3
-        = t('.research_intentions.title')
-      %table
-        %tr
-          %th= t('.research_intentions.research_intention_link')
-          %th= t('.research_intentions.role')
-          %th= t('.research_intentions.time')
-        - @scikon_profile.research_intentions.each do |k, research_intention|
+      - if @scikon_profile.research_intentions.size > 0
+        %h3
+          = t('.research_intentions.title')
+        %table
           %tr
-            %td= link_to(research_intention.title, research_intention.link)
-            %td= t('.research_intentions.roles.#{research_intention.role}')
-            %td= "#{research_intention.start} - #{research_intention.end}"
+            %th= t('.research_intentions.research_intention_link')
+            %th= t('.research_intentions.role')
+            %th= t('.research_intentions.time')
+          - @scikon_profile.research_intentions.each do |k, research_intention|
+            %tr
+              %td= link_to(research_intention.title, research_intention.link)
+              %td= t('.research_intentions.roles.#{research_intention.role}')
+              %td= "#{research_intention.start} - #{research_intention.end}"
             
-      %h3
-        = t('.cv.title')
-      .cv
-        = @scikon_profile.cv
+      - if @scikon_profile.cv != ''
+        %h3
+          = t('.cv.title')
+        .cv
+          = @scikon_profile.cv
               
     #paginate
       %span.loader.hidden
