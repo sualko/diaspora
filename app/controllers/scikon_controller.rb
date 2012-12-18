@@ -10,12 +10,14 @@ class ScikonController < ApplicationController
   def scikon_profile
     if !params[:forename].nil?
         @user = User.find_by_username([params[:forename], params[:lastname]].join("."))
-        @scikon_profile = get_person_profile @user.popid
     else
         @user = current_user
-        @scikon_profile = get_person_profile @user.popid
     end
     
+    Rails.cache.fetch("scikon_profile_for_#{@user.popid}", :expires_in => 12.hours) do
+      get_person_profile @user.popid
+    
+    @scikon_profile = Rails.cache.fetch("scikon_profile_for_#{@user.popid}")
     @person = @user.person
     
     unless params[:format] == "json" # hovercard
@@ -41,12 +43,14 @@ class ScikonController < ApplicationController
   def publication_list
     if !params[:forename].nil?
         @user = User.find_by_username([params[:forename], params[:lastname]].join("."))
-        @scikon_profile = get_sci_profile :username => @user.username
     else
         @user = current_user
-        @scikon_profile = get_sci_profile :username => @user.username
     end
     
+    Rails.cache.fetch("scikon_publications_for_#{@user.username}", :expires_in => 12.hours) do
+      get_sci_profile :username => @user.username
+      
+    @scikon_profile = Rails.cache.fetch("scikon_publications_for_#{@user.username}")
     @person = @user.person
     
     unless params[:format] == "json" # hovercard
