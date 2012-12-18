@@ -107,7 +107,7 @@ module ScikonHelper
     scikon_profile.authors = Hash.new
     scikon_profile.publications = Hash.new
     
-    extract_authors :publications => params[:publications], :authors => scikon_profile.authors, :client => params[:client]
+    extract_authors :publication => params[:publications], :authors => scikon_profile.authors, :client => params[:client]
     publications = params[:publications]
     
     publications.each do |publication|
