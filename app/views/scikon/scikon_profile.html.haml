@@ -63,7 +63,7 @@
         %h3
           = t('.interests.title')
         .interests
-          = @scikon_profile.interests
+          <%= @scikon_profile.interests.html_safe %>
         %br
         %br
         
@@ -141,7 +141,7 @@
         %h3
           = t('.cv.title')
         .cv
-          = @scikon_profile.cv
+          <%= @scikon_profile.cv.html_safe %>
         %br
         %br
               
