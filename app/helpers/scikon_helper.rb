@@ -33,7 +33,7 @@ module ScikonHelper
   end
   
   def get_person_profile(params = {})
-    unless params[:client].nil?
+    if params[:client].nil?
       client = connect()
     else
       client = params[:client]
