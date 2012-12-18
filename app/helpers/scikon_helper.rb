@@ -25,20 +25,24 @@ module ScikonHelper
       # Saving the publications temporarily and ignoring other data
       publications = xml.xpath("//ax25:publications", 'ax25' => AppConfig.services.scikon.ns_ax25)
       
-      return migrate_publications :publications => publications
+      return migrate_publications :publications => publications, :client => client
       
     else
       Rails.logger.error("Could not get a successful response from the server")
     end
   end
   
-  def get_person_profile(popid)
-    client = connect()
+  def get_person_profile(params = {})
+    unless params[:client].nil?
+      client = connect()
+    else
+      client = params[:client]
+    end
     
     #
     response = client.request :getPersonProfile do
       soap.body = {
-        :personId => popid,
+        :personId => params[:popid],
         :lang => "de"
       }
     end
@@ -136,7 +140,7 @@ module ScikonHelper
       # Maybe temporarily save the id and on request, check the profile out via scikon
       institutions = nil
       
-      authors = extract_authors publication, nil
+      authors = extract_authors :publication => publication, :client => params[:client]
       
       p = Publication.new :urn => urn,
                           :publication_title => publication_title,
@@ -235,18 +239,18 @@ module ScikonHelper
     return a
   end
 
-  def extract_authors(publication, authors)
-    all_authors = publication.xpath("ax25:authors", 'ax25' => AppConfig.services.scikon.ns_ax25)
+  def extract_authors(params = {})
+    all_authors = params[:publication].xpath("ax25:authors", 'ax25' => AppConfig.services.scikon.ns_ax25)
     
-    if authors.nil?
-      authors = Hash.new
+    if params[:authors].nil?
+      params[:authors] = Hash.new
     end
     
     all_authors.each do |author|
       externId = author.xpath("ax25:externId", 'ax25' => AppConfig.services.scikon.ns_ax25).text
       name = author.xpath("ax25:lastname", 'ax25' => AppConfig.services.scikon.ns_ax25).text
       
-      if authors[name].nil?
+      if params[:authors][name].nil?
         if externId == ''
           a = Author.new :name => name
         else
@@ -258,11 +262,11 @@ module ScikonHelper
           end
         end
       
-        authors.merge!(name => a)
+        params[:authors].merge!(name => a)
       end
     end
     
-    authors
+    params[:authors]
   end
   
 end

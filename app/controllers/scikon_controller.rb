@@ -14,8 +14,8 @@ class ScikonController < ApplicationController
         @user = current_user
     end
     
-    Rails.cache.fetch("scikon_profile_for_#{@user.popid}", :expires_in => 12.hours) do
-      get_person_profile @user.popid
+    Rails.cache.fetch("scikon_profile_for_#{@user.popid}", :expires_in => 24.hours) do
+      get_person_profile :popid => @user.popid
     end
     
     @scikon_profile = Rails.cache.fetch("scikon_profile_for_#{@user.popid}")
@@ -48,7 +48,7 @@ class ScikonController < ApplicationController
         @user = current_user
     end
     
-    Rails.cache.fetch("scikon_publications_for_#{@user.username}", :expires_in => 12.hours) do
+    Rails.cache.fetch("scikon_publications_for_#{@user.username}", :expires_in => 24.hours) do
       get_sci_profile :username => @user.username
     end
     
