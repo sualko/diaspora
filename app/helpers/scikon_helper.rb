@@ -182,7 +182,10 @@ module ScikonHelper
     zip = author_profile.xpath("ax25:zip", 'ax25' => AppConfig.services.scikon.ns_ax25).text
     wobsite_url = author_profile.xpath("ax25:wobsiteURL", 'ax25' => AppConfig.services.scikon.ns_ax25).text
     picture = author_profile.xpath("ax25:picture/ax25:url", 'ax25' => AppConfig.services.scikon.ns_ax25).text
+    cv = author_profile.xpath("ax25:cv", 'ax25' => AppConfig.services.scikon.ns_ax25).text
+    interests = author_profile.xpath("ax25:interests", 'ax25' => AppConfig.services.scikon.ns_ax25).text
     
+    # Lectures migration
     lectures_xp = author_profile.xpath("ax25:lectures", 'ax25' => AppConfig.services.scikon.ns_ax25)
     
     lectures = Hash.new
@@ -197,6 +200,7 @@ module ScikonHelper
       lectures.merge! id => l
     end
     
+    # Previous lectures migration
     previous_lectures_xp = author_profile.xpath("ax25:previousLectures", 'ax25' => AppConfig.services.scikon.ns_ax25)
     
     previous_lectures = Hash.new
@@ -211,10 +215,37 @@ module ScikonHelper
       previous_lectures.merge! id => l
     end
     
-    # TODO define objects and migrate them using the service!
-    projects = nil
+    # Project migration
+    projects = Hash.new
+    projects_xp = author_profile.xpath("ax25:projects", 'ax25' => AppConfig.services.scikon.ns_ax25)
     
-    # TODO CV and Assignments and Interests
+    projects_xp.each do |project|
+      id = project.xpath("ax25:id", 'ax25' => AppConfig.services.scikon.ns_ax25).text
+      title = project.xpath("ax25:title", 'ax25' => AppConfig.services.scikon.ns_ax25).text
+      role = project.xpath("ax25:id", 'ax25' => AppConfig.services.scikon.ns_ax25).text
+      start_d = project.xpath("ax25:title", 'ax25' => AppConfig.services.scikon.ns_ax25).text
+      end_d = project.xpath("ax25:id", 'ax25' => AppConfig.services.scikon.ns_ax25).text
+      
+      p = Project.new :id => id, :title => title, :role => role, :start => start_d, :end => end_d
+      
+      projects.merge! id => p
+    end
+    
+    # Project migration
+    research_intentions = Hash.new
+    research_intentions_xp = author_profile.xpath("ax25:projects", 'ax25' => AppConfig.services.scikon.ns_ax25)
+    
+    research_intentions_xp.each do |research_intention|
+      id = research_intention.xpath("ax25:id", 'ax25' => AppConfig.services.scikon.ns_ax25).text
+      title = research_intention.xpath("ax25:title", 'ax25' => AppConfig.services.scikon.ns_ax25).text
+      role = research_intention.xpath("ax25:id", 'ax25' => AppConfig.services.scikon.ns_ax25).text
+      start_d = research_intention.xpath("ax25:title", 'ax25' => AppConfig.services.scikon.ns_ax25).text
+      end_d = research_intention.xpath("ax25:id", 'ax25' => AppConfig.services.scikon.ns_ax25).text
+      
+      r = ResearchIntention.new :id => id, :title => title, :role => role, :start => start_d, :end => end_d
+      
+      research_intentions.merge! id => r
+    end
     
     a = Author.new  :uid => uid,
                     :name => name,
@@ -232,8 +263,11 @@ module ScikonHelper
                     :zip => zip,
                     :wobsite_url => wobsite_url,
                     :picture => picture,
+                    :cv => cv,
+                    :interests => interests,
                     :lectures => lectures,
                     :previous_lectures => previous_lectures,
+                    :research_intentions => research_intentions,
                     :projects => projects
                     
     return a

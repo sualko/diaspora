@@ -32,6 +32,7 @@ class Author
                   :lectures,
                   :previous_lectures,
                   :assignments,
+                  :research_intentions,
                   :projects
   
   def initialize(params = {})
@@ -56,6 +57,7 @@ class Author
     self.lectures = params[:lectures]
     self.previous_lectures = params[:previous_lectures]
     self.assignments = params[:assignments]
+    self.research_intentions = params[:research_intentions]
     self.projects = params[:projects]
   end
   

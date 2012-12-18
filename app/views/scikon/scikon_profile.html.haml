@@ -53,6 +53,12 @@
           %tr
             %td= t('.contact_data.homepage')
             %td= link_to(t('.contact_data.homepage'), @scikon_profile.wobsite_url)
+            
+      %h3
+        = t('.interests.title')
+      .interests
+        = @scikon_profile.interests
+        
       %h3
         = t('.lectures.title')
       
@@ -83,6 +89,37 @@
             %td= lecture.number
         - if @scikon_profile.previous_lectures.size == 0
           = t('.lectures.no_previous_lectures')
+          
+      %h3
+        = t('.projects.title')
+      %table
+        %tr
+          %th= t('.projects.project_link')
+          %th= t('.projects.role')
+          %th= t('.projects.time')
+        - @scikon_profile.projects.each do |k, project|
+          %tr
+            %td= link_to(project.title, project.link)
+            %td= t('.projects.roles.#{project.role}')
+            %td= "#{project.start} - #{project.end}"
+        
+      %h3
+        = t('.research_intentions.title')
+      %table
+        %tr
+          %th= t('.research_intentions.research_intention_link')
+          %th= t('.research_intentions.role')
+          %th= t('.research_intentions.time')
+        - @scikon_profile.research_intentions.each do |k, research_intention|
+          %tr
+            %td= link_to(research_intention.title, research_intention.link)
+            %td= t('.research_intentions.roles.#{research_intention.role}')
+            %td= t('#{research_intention.start} - #{research_intention.end}')
+            
+      %h3
+        = t('.cv.title')
+      .cv
+        = @scikon_profile.cv
               
     #paginate
       %span.loader.hidden
