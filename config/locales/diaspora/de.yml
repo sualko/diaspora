@@ -820,16 +820,16 @@ de:
         project_link: "Projektlink"
         role: "Rolle"
         roles:
-          1: "Projektleiter"
-          2: "Projektmitarbeiter"
+          nr1: "Projektleiter"
+          nr2: "Projektmitarbeiter"
         time: "Laufzeit"
       research_intentions:
         title: "Forschungsvorhaben"
         project_link: "Link zum Forschungsvorhaben"
         role: "Rolle"
         roles:
-          1: "Projektleiter"
-          2: "Projektmitarbeiter"
+          nr1: "Projektleiter"
+          nr2: "Projektmitarbeiter"
         time: "Laufzeit"
   services:
     create:

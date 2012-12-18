@@ -63,7 +63,7 @@
         %h3
           = t('.interests.title')
         .interests
-          <%= @scikon_profile.interests.html_safe %>
+          = @scikon_profile.interests.html_safe
         %br
         %br
         
@@ -116,12 +116,12 @@
           - @scikon_profile.projects.each do |k, project|
             %tr
               %td= link_to(project.title, project.link)
-              %td= t(['.projects.roles.', project.role].join(""))
+              %td= t(['.projects.roles.nr', project.role].join(""))
               %td= "#{project.start} - #{project.end}"
         %br
         %br
         
-      - if @scikon_profile.research_intentions.size > 1
+      - if @scikon_profile.research_intentions.size > 0
         %h3
           = t('.research_intentions.title')
         %table
@@ -132,7 +132,7 @@
           - @scikon_profile.research_intentions.each do |k, research_intention|
             %tr
               %td= link_to(research_intention.title, research_intention.link)
-              %td= t(['.research_intentions.roles.', research_intention.role].join(""))
+              %td= t(['.research_intentions.roles.nr', research_intention.role].join(""))
               %td= "#{research_intention.start} - #{research_intention.end}"
         %br
         %br
@@ -141,7 +141,7 @@
         %h3
           = t('.cv.title')
         .cv
-          <%= @scikon_profile.cv.html_safe %>
+          = @scikon_profile.cv.html_safe
         %br
         %br
               
