@@ -222,7 +222,7 @@ module ScikonHelper
     projects_xp.each do |project|
       id = project.xpath("ax25:project/ax25:id", 'ax25' => AppConfig.services.scikon.ns_ax25).text
       title = project.xpath("ax25:project/ax25:title", 'ax25' => AppConfig.services.scikon.ns_ax25).text
-      role = project.xpath("ax25:role", 'ax25' => AppConfig.services.scikon.ns_ax25).text
+      role = project.xpath("ax25:projectRole", 'ax25' => AppConfig.services.scikon.ns_ax25).text
       start_d = project.xpath("ax25:project/ax25:start", 'ax25' => AppConfig.services.scikon.ns_ax25).text
       end_d = project.xpath("ax25:project/ax25:end", 'ax25' => AppConfig.services.scikon.ns_ax25).text
       
@@ -233,12 +233,12 @@ module ScikonHelper
     
     # Project migration
     research_intentions = Hash.new
-    research_intentions_xp = author_profile.xpath("ax25:projects", 'ax25' => AppConfig.services.scikon.ns_ax25)
+    research_intentions_xp = author_profile.xpath("ax25:researchIntentions", 'ax25' => AppConfig.services.scikon.ns_ax25)
     
     research_intentions_xp.each do |research_intention|
       id = research_intention.xpath("ax25:researchIntention/ax25:id", 'ax25' => AppConfig.services.scikon.ns_ax25).text
       title = research_intention.xpath("ax25:researchIntention/ax25:title", 'ax25' => AppConfig.services.scikon.ns_ax25).text
-      role = research_intention.xpath("ax25:role", 'ax25' => AppConfig.services.scikon.ns_ax25).text
+      role = research_intention.xpath("ax25:riRole", 'ax25' => AppConfig.services.scikon.ns_ax25).text
       start_d = research_intention.xpath("ax25:researchIntention/ax25:start", 'ax25' => AppConfig.services.scikon.ns_ax25).text
       end_d = research_intention.xpath("ax25:researchIntention/ax25:end", 'ax25' => AppConfig.services.scikon.ns_ax25).text
       
