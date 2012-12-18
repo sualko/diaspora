@@ -516,13 +516,13 @@ class User < ActiveRecord::Base
   def get_ldap_email
     email = ldap_get_param(self.username, "mail", self.password)
     
-    Rails.logger.info email
+    Rails.logger.info "Got ldap email #{email}"
     
-    if email.first.nil?
-      Rails.logger.info "Email first is nil, returning"
+    if email.kind_of? String
+      Rails.logger.info "Email is a string, returning"
       return email
     else
-      Rails.logger.info "Email is array, returning first"
+      Rails.logger.info "Email is an array, returning first"
       return email.first
     end
     
