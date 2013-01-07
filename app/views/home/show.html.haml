@@ -6,8 +6,18 @@
 - content_for :page_title do
   = pod_name
 
-%h1
-  = t('.welcome_title')
-  
-%p
-  = t('.info_pod')
+#page
+  #content
+    .row
+      .btn
+        = link_to("Login", "users/sign_in")
+    #getting-started
+      .row
+        #banner
+          %h1
+            = t('.welcome_title')
+          %p
+            = t('.info_pod')
+      .row
+        %p
+          = t('.have_fun')

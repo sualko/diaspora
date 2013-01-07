@@ -350,6 +350,7 @@ de:
       info_pod: "Dieser Service befindet sich derzeit in einem Alpha-Status. Daher kann es vorkommen, dass Ihre Daten nicht mehr existieren und Sie sich erneut anmelden müssen.
                  Da sich dieser Service in einem frühen Entwicklungsstand befindet, können wir ebenfalls nicht gewährleisten, dass er zu jeder Zeit erreichbar ist. Wir würden 
                  uns dennoch freuen, wenn Sie unseren Service testen und ein Verbesserungsvorschäge und Wünsche an uns richten."
+      have_fun: ""
   hide: "Ausblenden"
   invitation_codes:
     excited: "%{name} freut sich dich hier zu sehen."
