@@ -9,8 +9,9 @@
 #page.container
   #content
     .row
-      #login-link.btn
-        = link_to("Login", "users/sign_in")
+      #header
+        #login-link.btn(style => 'margin-right: 15px;')
+          = link_to("Login", "users/sign_in")
     #getting-started
       .row
         #banner
