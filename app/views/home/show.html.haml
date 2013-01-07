@@ -6,9 +6,8 @@
 - content_for :page_title do
   = pod_name
 
-- begin
-  = render :partial => 'home/show'
-
-- rescue
-  :erb
-    <%= File.open(Rails.root.join('public', 'default.html')).read %>
+%h1
+  = t('.welcome_title')
+  
+%p
+  = t('.info_pod')

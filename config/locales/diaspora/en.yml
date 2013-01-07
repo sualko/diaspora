@@ -351,6 +351,30 @@ en:
       fullmonth_day: "%B %d"
       birthday: "%B %d"
       birthday_with_year: "%B %d %Y"
+      
+  document_type:
+    info: ""
+    article: "Article"
+    bachelorThesis: "Bachelor Thesis"
+    book: "Book"
+    bookPart: "Part of a book"
+    conferenceObject: "Conference"
+    doctoralThesis: "Doctoral Thesis"
+    masterThesis: "Master Thesis"
+    Other: "Other (non textual)"
+    periodicalPart: "Journal"
+    preprint: "Preprint"
+    report: "Report"
+    review: "Review"
+    StudyThesis: "Study Thesis"
+    workingPaper: "Working Paper/ Technical Report"
+  
+  home:
+    show:
+      welcome_title: "Willkommen auf dem diaspora pod der Universität Konstanz"
+      info_pod: "Dieser Service befindet sich derzeit in einem Alpha-Status. Daher kann es vorkommen, dass Ihre Daten nicht mehr existieren und Sie sich erneut anmelden müssen.
+                 Da sich dieser Service in einem frühen Entwicklungsstand befindet, können wir ebenfalls nicht gewährleisten, dass er zu jeder Zeit erreichbar ist. Wir würden 
+                 uns dennoch freuen, wenn Sie unseren Service testen und ein Verbesserungsvorschäge und Wünsche an uns richten."
 
   invitation_codes:
     excited: "%{name} is excited to see you here."
@@ -770,6 +794,55 @@ en:
     destroy:
       success: "Let's see what they have to say! #sayhello"
       failure: "I couldn't stop ignoring that user.  #evasion"
+
+  scikon:
+    buttons:
+      profile: "Profile from University of Konstanz"
+      publications: "List of publications"
+    publication:
+      simple_link: "%{publication}"
+    publication_list:
+      title: "Profile from University of Konstanz for %{first_name} %{last_name}"
+      publications: "Publications of %{first_name} %{last_name}"
+    scikon_profile:
+      title: "Profile from University of Konstanz for %{first_name} %{last_name}"
+      publications: "Publications of %{first_name} %{last_name}"
+      contact_data:
+        title: "Contactdata"
+        name: "Name"
+        email: "Emailadress"
+        room: "Roomnumber"
+        phone: "Telephone"
+        fax: "Fax"
+        homepage: "Homepage"
+      cv:
+        title: "Curriculum vitae"
+      interests:
+        title: "Interests"
+      lectures:
+        title: "Lectures during this semester"
+        previous_title: "Lectures from previous semesters"
+        lecture_link: "Link to the lecture"
+        type: "Type"
+        number: "Number"
+        no_lectures: "Currently no lectures are held by this user"
+        no_previous_lectures: "This user has not held any lecture in the past"
+      projects:
+        title: "Projects"
+        project_link: "Projectlink"
+        role: "Role"
+        roles:
+          nr1: "Projectleader"
+          nr2: "Project co-worker"
+        time: "From/Until"
+      research_intentions:
+        title: "Researchintentions"
+        project_link: "Link to researchintentions"
+        role: "Role"
+        roles:
+          nr1: "Projectleader"
+          nr2: "Project co-worker"
+        time: "From/Until"
 
   shared:
     aspect_dropdown:
