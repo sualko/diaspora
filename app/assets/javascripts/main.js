@@ -8,7 +8,7 @@
 //= require jquery.hotkeys
 //= require jquery.remotipart
 //= require jquery.autoresize
-//= require jquery-ui-1.8.9.custom.min
+//= require jquery-ui-1.10.0.custom.min
 //= require jquery.charcount
 //= require jquery.placeholder
 //= require timeago
