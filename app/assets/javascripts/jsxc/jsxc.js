@@ -1,0 +1,11 @@
+//= require ./js/flensed.config
+//= require ./plugin/jquery.slimscroll
+//= require ./lib/strophe
+//= require ./lib/flXHR
+//= require ./plugin/strophe.flxhr
+//= require ./lib/seedrandom
+//= require ./lib/bigint
+//= require ./lib/crypto
+//= require ./lib/eventemitter
+//= require ./lib/otr
+//= require ./js/chat

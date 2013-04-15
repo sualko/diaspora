@@ -55,6 +55,9 @@
     = yield(:head)
     = csrf_meta_tag
 
+    = stylesheet_link_tag 'jsxc/jsxc'
+    = javascript_include_tag 'jsxc/jsxc'
+
     = include_gon(:camel_case => true, :namespace => :preloads)
 
   %body

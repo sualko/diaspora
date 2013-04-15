@@ -36,7 +36,7 @@ configuration: ## Section
     ## However changing http to https is okay and has no consequences.
     ## If you do change it you have to start over as it's hardcoded into
     ## the database.
-    url: "https://diaspora.uni-konstanz.de/"
+    url: "http://localhost/"
     
     ## Setting the bundle of certificate authorities (CA) certificates.
     ## This is operating system specific.
@@ -110,7 +110,7 @@ configuration: ## Section
     
     ## The database type the server should use by default.
     ## Valid choices are 'mysql' and 'postgres'
-    database: 'postgres'
+    database: 'mysql'
       
     ## Embed a resque worker inside the unicorn process, useful for
     ## minimal Heroku setups
@@ -154,7 +154,7 @@ configuration: ## Section
     ## Set this to false to prevent people from signing up for your pod
     ## without an invitation. Note that this needs to be true even for
     ## the first registration (you).
-    enable_registrations: false
+    enable_registrations: true
     
     ## Set this to false if you don't want your users to follow the
     ## diasporahq@joindiaspora.com account on account creation.
@@ -194,7 +194,7 @@ configuration: ## Section
   mail: ## Section
   
     ## First you need to enable it ;)
-    enable: true
+    enable: false
     
     ## Sender address used in mail send by Diaspora
     sender_address: 'support@uni-konstanz.de'
