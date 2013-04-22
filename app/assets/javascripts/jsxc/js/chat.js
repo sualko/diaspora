@@ -58,21 +58,31 @@ var jsxc = {
 
         jsxc.storageNotConform = jsxc.storage.getItem('storageNotConform') || 2;
         
+        //detect language
         if(jsxc.options.autoLang && navigator.language)
             lang = navigator.language.substr(0, 2);
         else
             lang = jsxc.options.defaultLang;
         
+        //set language
         jsxc.l = jsxc.l10n.en;
         $.extend(jsxc.l, jsxc.l10n[lang]);
         
+        //Check localStorage
         if(typeof(localStorage) === 'undefined'){
             jsxc.debug("Browser doesn't support localStorage.");
             return;
         }
         
+        //Check flash
         if(jsxc.options.checkFlash && !jsxc.hasFlash()){
             jsxc.debug("No flash plugin for cross-domain requests.");
+            return;
+        }
+        
+        //Check bosh url
+        if(!jsxc.options.xmpp.url){
+            jsxc.debug("No BOSH url defined.");
             return;
         }
         
@@ -561,7 +571,7 @@ jsxc.options = {
     },
     
     xmpp: {                 //xmpp options (see [1])
-        url: 'http://kn.intra:7070/http-bind/',
+        url: null,
         jid: null,
         password: null
     },
@@ -2619,6 +2629,10 @@ $(function(){
         
         debug: function(msg){
             console.log(msg);
+        },
+                
+        xmpp: {
+            url: 'http://your-boshserver'
         }
     });
 });
