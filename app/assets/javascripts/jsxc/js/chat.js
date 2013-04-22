@@ -1775,7 +1775,7 @@ jsxc.xmpp = {
         jsxc.debug('XMPP connection failed: '+condition);
         
         if(jsxc.triggeredFromForm){
-            jsxc.options.loginForm.form.submit();
+            jsxc.options.loginForm.form.off('submit').submit();
         }
     },
     
